@@ -85,13 +85,14 @@ switch ($wikiID) {
 	case 'kirbwiki':
 		$hostname = 'wiki.kirb.me';
 		$wgServer = '//wiki.kirb.me';
-		$wgCanonicalServer = '//wiki.kirb.me';
+		$wgCanonicalServer = 'https://wiki.kirb.me';
 		$wgSitename = 'kirbwiki';
 		$wgMetaNamespace = 'kirbwiki';
 		$wgCitizenThemeColor = '#fd7423';
-		$wgAppleTouchIcon = "$wgResourceBasePath/resources/$wikiID/logo.jpg";
+		$wgAppleTouchIcon = "$wgResourceBasePath/resources/$wikiID/logo-big.jpg";
 		$wgLogos = [
-			'1x' => $wgAppleTouchIcon,
+			'1x' => "$wgResourceBasePath/resources/$wikiID/logo.jpg",
+			'2x' => $wgAppleTouchIcon,
 			'icon' => $wgAppleTouchIcon
 		];
 		break;
