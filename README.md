@@ -52,9 +52,9 @@ We have all extensions and skins cloned into html/extensions/ and html/skins/ vi
 If the MediaWiki image needs to be built, or rebuilt, use `./update-mw.sh`.
 
 ## To do
+
 * Move jobrunner to a container
 * Move nginx to a container
-* Break up `applewiki`-specific LocalSettings.php config to a separate file
 
 ## License
 
