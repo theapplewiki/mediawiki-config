@@ -1,4 +1,4 @@
-FROM mediawiki:1.41-fpm
+FROM mediawiki:1.42-fpm
 
 RUN set -eux; \
 		apt-get update -q; \
