@@ -1,5 +1,7 @@
 FROM mediawiki:1.41-fpm
 
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
 RUN set -eux; \
 		apt-get update -q; \
 		apt-get install -qy --no-install-recommends \
@@ -7,7 +9,6 @@ RUN set -eux; \
 			liblua5.1-0-dev \
 			libmagickwand-dev \
 			libzstd-dev; \
-		curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
 		pecl install imagick luasandbox redis; \
 		docker-php-ext-install -j $(nproc) pcntl; \
 		docker-php-ext-enable imagick luasandbox pcntl redis; \
