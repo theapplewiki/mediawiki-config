@@ -1,15 +1,15 @@
 #!/bin/bash
-ver=REL1_41
-
 set -e
 
-cd /srv/wiki/html
+source .env
+cd "$(dirname "$0")"/html
+
 for i in {extensions,skins}/*; do
-	[[ -d $i/.git ]] || continue
+	[[ -f $i/.git ]] || continue
 	printf '\n\n%s\n\n' "$i"
 	cd $i
 	if [[ $(git rev-parse --abbrev-ref HEAD) =~ REL* ]]; then
-		git pull origin $ver || :
+		git pull origin $MW_GIT_REF || :
 	else
 		git pull origin $(git rev-parse --abbrev-ref HEAD) || :
 	fi
@@ -25,8 +25,6 @@ docker compose exec mediawiki \
 	composer install --no-dev --optimize-autoloader
 
 # rm -rf cache/*
-
-source .env
 
 for i in $WIKIS; do
 	docker compose exec mediawiki \
