@@ -1,0 +1,73 @@
+{
+	"groups": {
+		"main": {
+			"runners": 2,
+			"include": [
+				"*"
+			],
+			"exclude": [
+				"AssembleUploadChunks",
+				"cirrusSearchLinksUpdate",
+				"cirrusSearchElasticaWrite",
+				"ParsoidCacheUpdateJobOnDependencyChange",
+				"ParsoidCacheUpdateJobOnEdit",
+				"PublishStashedFile",
+				"uploadFromUrl",
+				"webVideoTranscode"
+			],
+			"low-priority": [
+				"htmlCacheUpdate",
+				"refreshLinks"
+			]
+		},
+
+		"secondary": {
+			"runners": 1,
+			"include": [
+				"ParsoidCacheUpdateJobOnDependencyChange",
+				"ParsoidCacheUpdateJobOnEdit",
+				"cirrusSearchLinksUpdate",
+				"cirrusSearchElasticaWrite"
+			]
+		},
+		"transcode": {
+			"runners": 1,
+			"include": [
+				"webVideoTranscode"
+			]
+		},
+
+		"upload": {
+			"runners": 1,
+			"include": [
+				"AssembleUploadChunks",
+				"PublishStashedFile",
+				"uploadFromUrl"
+			]
+		}
+	},
+
+	"limits": {
+		"attempts": {
+			"*": 3
+		},
+		"claimTTL": {
+			"*": 3600,
+			"webVideoTranscode": 86400
+		},
+		"real": {
+			"*": 300,
+			"webVideoTranscode": 86400
+		},
+		"memory": {
+			"*": "100M"
+		}
+	},
+
+	"redis": {
+		"aggregators": ["127.0.0.1:6379"],
+		"queues": ["127.0.0.1:6379"]
+	},
+
+	"dispatcher": "/srv/applewiki/runjobs.sh --wiki=applewiki --type=%(type)x --maxtime=%(maxtime)x --memory-limit=%(maxmem)x --result=json"
+}

@@ -1,0 +1,3 @@
+MAILTO="root"
+
+30 0 * * * /srv/applewiki/cron-daily.sh

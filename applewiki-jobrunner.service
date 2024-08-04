@@ -1,0 +1,19 @@
+[Unit]
+After=network.target
+
+[Service]
+Type=simple
+
+User=jobrunner
+Group=jobrunner
+
+WorkingDirectory=/srv/wiki
+ExecStart=/usr/bin/php jobrunner/redisJobRunnerService --config-file=jobrunner-applewiki.json
+
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=15s
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

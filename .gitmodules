@@ -1,0 +1,3 @@
+[submodule "jobrunner"]
+	path = jobrunner
+	url = https://github.com/wikimedia/mediawiki-services-jobrunner.git

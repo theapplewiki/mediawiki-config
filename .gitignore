@@ -1,0 +1,12 @@
+.env
+
+/cache/*
+/db/*
+/redis/*
+/elasticsearch/*
+/html/extensions/*
+/html/images/*
+/html/sitemap/*
+/html/skins/*
+
+!**/.gitkeep
