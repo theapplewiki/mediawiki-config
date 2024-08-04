@@ -20,8 +20,8 @@ services:
       - './html/vendor:/var/www/html/vendor'
       - './html/sitemap:/var/www/html/sitemap'
       - './cache:/var/www/html/cache'
-      - './php.ini:/usr/local/etc/php/conf.d/applewiki.ini'
-      - './php-fpm.conf:/usr/local/etc/php-fpm.d/zz-applewiki.conf'
+      - './php.ini:/usr/local/etc/php/conf.d/zz-wiki.ini'
+      - './php-fpm.conf:/usr/local/etc/php-fpm.d/zz-wiki.conf'
     environment:
       WG_DB_PASSWORD: '${MYSQL_PASSWORD}'
       WG_SECRET_KEY: '${WG_SECRET_KEY}'
