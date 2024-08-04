@@ -8,7 +8,7 @@ User=jobrunner
 Group=jobrunner
 
 WorkingDirectory=/srv/wiki
-ExecStart=/usr/bin/php jobrunner/redisJobChronService --config-file=jobrunner-applewiki.json
+ExecStart=/usr/bin/php jobrunner/redisJobChronService --config-file=jobrunner.json
 
 Restart=on-failure
 RestartSec=5

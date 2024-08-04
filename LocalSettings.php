@@ -4,13 +4,13 @@ if (!defined('MEDIAWIKI')) {
 }
 
 
-// Never display errors to the user. We can find them in apache logs still.
+// Never display errors to the user. We can find them in php-fpm logs still.
 error_reporting(PHP_SAPI == 'cli' ? E_ALL : 0);
 // error_reporting(E_ALL);
 
 
 $wgShowExceptionDetails = true;
-$wgDebugLogFile = '/tmp/mediawiki.log';
+// $wgDebugLogFile = '/tmp/mediawiki.log';
 
 
 // Uncomment when running maintenance (e.g. MediaWiki updates)
@@ -18,30 +18,12 @@ $wgDebugLogFile = '/tmp/mediawiki.log';
 
 
 $wikis = [
-	'theapplewiki.com' => 'applewiki'
+	'theapplewiki.com' => 'applewiki',
+	'applewiki.test'   => 'testwiki',
+	'wiki.kirb.me'     => 'kirbwiki'
 ];
 
-$wgConf->settings = [
-	'hostname' => [
-		'applewiki' => 'theapplewiki.com'
-	],
-
-	'wgServer' => [
-		'applewiki' => 'https://theapplewiki.com'
-	],
-
-	'wgSitename' => [
-		'applewiki' => 'The Apple Wiki'
-	],
-
-	'wgMetaNamespace' => [
-		'applewiki' => 'The_Apple_Wiki'
-	],
-
-	'wgCitizenThemeColor' => [
-		'applewiki' => '#585858'
-	]
-];
+$wgConf->wikis = array_values($wikis);
 
 if (defined('MW_DB')) {
 	// Automatically set from --wiki option to maintenance scripts
@@ -54,7 +36,66 @@ if (defined('MW_DB')) {
 	}
 }
 
-extract($wgConf->getAll($wikiID));
+
+define('IS_LEGACY', $wikiID == 'kirbwiki' &&
+	(@$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http' ||
+	preg_match('/MSIE|Trident|Win(dows)? ?(9[58x]|Me|NT 5\.)/i', @$_SERVER['HTTP_USER_AGENT'] || ''))
+);
+
+
+switch ($wikiID) {
+	case 'applewiki':
+		$hostname = 'theapplewiki.com';
+		$wgServer = 'https://theapplewiki.com';
+		$wgSitename = 'The Apple Wiki';
+		$wgMetaNamespace = 'The_Apple_Wiki';
+		$wgCitizenThemeColor = '#585858';
+		$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
+		$wgLogos = [
+			'1x' => $wgAppleTouchIcon,
+			'svg' => "$wgResourceBasePath/resources/applewiki/logo-square.svg",
+			'wordmark' => [
+				'src' => "$wgResourceBasePath/resources/$wikiID/logo-wordmark.svg",
+				'width' => 135,
+				'height' => 23
+			],
+			'icon' => "$wgResourceBasePath/resources/$wikiID/logo-glyph.svg",
+		];
+		break;
+
+	case 'testwiki':
+		$hostname = 'applewiki.test';
+		$wgServer = 'http://applewiki.test';
+		$wgSitename = 'The Apple Wiki';
+		$wgMetaNamespace = 'The_Apple_Wiki';
+		$wgCitizenThemeColor = '#585858';
+		$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
+		$wgLogos = [
+			'1x' => $wgAppleTouchIcon,
+			'svg' => "$wgResourceBasePath/resources/applewiki/logo-square.svg",
+			'wordmark' => [
+				'src' => "$wgResourceBasePath/resources/applewiki/logo-wordmark.svg",
+				'width' => 135,
+				'height' => 23
+			],
+			'icon' => "$wgResourceBasePath/resources/applewiki/logo-glyph.svg",
+		];
+		break;
+
+	case 'kirbwiki':
+		$hostname = 'wiki.kirb.me';
+		$wgServer = '//wiki.kirb.me';
+		$wgCanonicalServer = '//wiki.kirb.me';
+		$wgSitename = 'kirbwiki';
+		$wgMetaNamespace = 'kirbwiki';
+		$wgCitizenThemeColor = '#fd7423';
+		$wgAppleTouchIcon = "$wgResourceBasePath/resources/$wikiID/logo.jpg";
+		$wgLogos = [
+			'1x' => $wgAppleTouchIcon,
+			'icon' => $wgAppleTouchIcon
+		];
+		break;
+}
 
 // Paths
 $wgScriptPath         = '';
@@ -66,19 +107,6 @@ $wgCacheDirectory     = "/tmp/mediawiki_cache/$wikiID";
 $wgUploadDirectory    = "$IP/images/$wikiID";
 $wgUseFileCache       = true;
 $wgFileCacheDirectory = "$IP/cache";
-
-// Logos
-$wgLogos = [
-	'1x' => "$wgResourceBasePath/apple-touch-icon.png",
-	'svg' => "$wgResourceBasePath/resources/$wikiID/logo-square.svg",
-	'wordmark' => [
-		'src' => "$wgResourceBasePath/resources/$wikiID/logo-wordmark.svg",
-		'width' => 135,
-		'height' => 23
-	],
-	'icon' => "$wgResourceBasePath/resources/$wikiID/logo-glyph.svg",
-];
-$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
 
 // Email
 // UPO means: this is also a user preference option
@@ -96,7 +124,7 @@ $wgEmailAuthentication = true;
 $wgSendGridAPIKey = $_ENV['WG_SENDGRID_API_KEY'];
 
 // Database
-$wgLocalDatabases = $wgConf->wikis = array_values($wikis);
+$wgLocalDatabases = $wgConf->wikis;
 
 $wgDBtype         = 'mysql';
 $wgDBserver       = 'database';
@@ -145,7 +173,7 @@ $wgFileExtensions[] = 'svg';
 $wgSVGConverter     = 'rsvg';
 
 // Prefer sending SVG to client rather than rendered PNG
-$wgSVGNativeRendering = true;
+$wgSVGNativeRendering = !IS_LEGACY;
 
 // InstantCommons allows wiki to use images from https://commons.wikimedia.org
 $wgUseInstantCommons = true;
@@ -175,45 +203,56 @@ $wgAuthenticationTokenVersion = $_ENV['WG_AUTHENTICATION_TOKEN_VERSION'];
 $wgRightsPage = ''; # Set to the title of a wiki page that describes your license/copyright
 $wgRightsUrl  = 'https://creativecommons.org/licenses/by-sa/4.0/';
 $wgRightsText = 'Creative Commons Attribution-ShareAlike';
-$wgRightsIcon = "$wgResourceBasePath/resources/applewiki/cc-by-sa-v2.svg";
+
+if (IS_LEGACY) {
+	$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
+} else {
+	$wgRightsIcon = "$wgResourceBasePath/resources/common/cc-by-sa.svg";
+}
 
 // Diff tool
 $wgDiff3 = '/usr/bin/diff3';
 
 // Namespaces
-define('NS_MODULE',          828);
-define('NS_MODULE_TALK',     829);
-define('NS_KEYS',            2304);
-define('NS_KEYS_TALK',       2305);
-define('NS_DEV',             2306);
-define('NS_DEV_TALK',        2307);
-define('NS_FILESYSTEM',      2308);
-define('NS_FILESYSTEM_TALK', 2309);
+define('NS_MODULE',      828);
+define('NS_MODULE_TALK', 829);
 
-$wgExtraNamespaces[NS_KEYS]            = 'Keys';
-$wgExtraNamespaces[NS_KEYS_TALK]       = 'Keys_talk';
-$wgExtraNamespaces[NS_DEV]             = 'Dev';
-$wgExtraNamespaces[NS_DEV_TALK]        = 'Dev_talk';
-$wgExtraNamespaces[NS_FILESYSTEM]      = 'Filesystem';
-$wgExtraNamespaces[NS_FILESYSTEM_TALK] = 'Filesystem_talk';
+$wgContentNamespaces = [NS_MAIN];
 
-$wgContentNamespaces = [NS_MAIN, NS_KEYS, NS_DEV, NS_FILESYSTEM];
 $wgNamespacesToBeSearchedDefault = [
-	NS_MAIN       => true,
-	NS_PROJECT    => true,
-	NS_DEV        => true,
-	NS_FILESYSTEM => true
+	NS_MAIN     => true,
+	NS_PROJECT  => true,
+	NS_HELP     => true,
+	NS_CATEGORY => true
 ];
 
-$wgNamespacesWithSubpages[NS_MAIN]       = true;
-$wgNamespacesWithSubpages[NS_DEV]        = true;
-$wgNamespacesWithSubpages[NS_FILESYSTEM] = true;
+$wgNamespacesWithSubpages[NS_MAIN] = true;
 
-$wgSitemapNamespaces    = [NS_MAIN, NS_USER, NS_PROJECT, NS_HELP, NS_CATEGORY, NS_KEYS, NS_DEV, NS_FILESYSTEM];
+$wgSitemapNamespaces = [NS_MAIN, NS_USER, NS_PROJECT, NS_HELP, NS_CATEGORY];
+
+if ($wikiID == 'applewiki') {
+	define('NS_KEYS',            2304);
+	define('NS_KEYS_TALK',       2305);
+	define('NS_DEV',             2306);
+	define('NS_DEV_TALK',        2307);
+	define('NS_FILESYSTEM',      2308);
+	define('NS_FILESYSTEM_TALK', 2309);
+
+	$wgExtraNamespaces[NS_KEYS]            = 'Keys';
+	$wgExtraNamespaces[NS_KEYS_TALK]       = 'Keys_talk';
+	$wgExtraNamespaces[NS_DEV]             = 'Dev';
+	$wgExtraNamespaces[NS_DEV_TALK]        = 'Dev_talk';
+	$wgExtraNamespaces[NS_FILESYSTEM]      = 'Filesystem';
+	$wgExtraNamespaces[NS_FILESYSTEM_TALK] = 'Filesystem_talk';
+}
+
 $wgPageImagesNamespaces = $wgContentNamespaces;
 
-// TODO: Uncomment when we’re in a better position to do this
-// $wgNamespaceProtection[NS_TEMPLATE] = ['editinterface', 'edittemplate'];
+// TODO: Enable for applewiki when we’re in a better position to do this
+if ($wikiID != 'applewiki') {
+	$wgNamespaceProtection[NS_TEMPLATE] = ['editinterface', 'edittemplate'];
+}
+
 $wgNamespaceProtection[NS_MODULE]   = ['edittemplate'];
 
 // Extensions
@@ -236,7 +275,6 @@ wfLoadExtension('Gadgets');
 wfLoadExtension('InputBox');
 wfLoadExtension('Interwiki');
 wfLoadExtension('Linter');
-wfLoadExtension('MediaWikiAuth');
 wfLoadExtension('MultimediaViewer');
 wfLoadExtension('OATHAuth');
 wfLoadExtension('OAuth');
@@ -248,8 +286,6 @@ wfLoadExtension('RelatedArticles');
 wfLoadExtension('Renameuser');
 wfLoadExtension('ReplaceText');
 wfLoadExtension('Scribunto');
-wfLoadExtension('SemanticMediaWiki');
-wfLoadExtension('SemanticScribunto');
 wfLoadExtension('SendGrid');
 wfLoadExtension('SpamBlacklist');
 wfLoadExtension('SyntaxHighlight_GeSHi');
@@ -270,13 +306,23 @@ wfLoadSkin('Citizen');
 
 $wgDefaultSkin = 'citizen';
 
+if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
+	wfLoadExtension('MediaWikiAuth');
+	wfLoadExtension('SemanticMediaWiki');
+	wfLoadExtension('SemanticScribunto');
+} elseif ($wikiID == 'kirbwiki') {
+	wfLoadSkin('MonoBookLegacy');
+
+	$wgDefaultSkin = IS_LEGACY ? 'monobooklegacy' : 'citizen';
+}
+
 // Parsoid
 $wgParsoidSettings = [
 	'useSelser' => true,
 	'linting'   => true
 ];
 
-$wgParserEnableLegacyMediaDOM = false;
+$wgParserEnableLegacyMediaDOM = !IS_LEGACY;
 
 // Reverse proxy
 $wgUseCdn            = true;
@@ -289,6 +335,7 @@ $wgForcedRawSMaxage  = 60 * 30;
 $wgEnableCanonicalServerLink = true;
 
 // Cookies
+$wgSecureLogin       = true;
 $wgCookieSecure      = true;
 $wgCookieSameSite    = 'Lax';
 
@@ -327,8 +374,13 @@ $wgEnableScaryTranscluding = true;
 // Permissions
 
 // Everyone
-// Uncomment the following in an emergency
-// $wgGroupPermissions['*']['createaccount'] = false;
+if ($wikiID == 'applewiki') {
+	// Set to false in an emergency
+	$wgGroupPermissions['*']['createaccount'] = true;
+} else {
+	$wgGroupPermissions['*']['createaccount'] = false;
+}
+
 $wgGroupPermissions['*']['edit']   = false;
 $wgGroupPermissions['*']['purge']  = false;
 $wgGroupPermissions['*']['upload'] = false;
@@ -347,17 +399,19 @@ $wgGroupPermissions['emailconfirmed']['edit']       = true;
 $wgGroupPermissions['emailconfirmed']['upload']     = true;
 
 // Logged in user who has made sufficient edits
-$wgAutoConfirmAge   = 3 * 24 * 60 * 60;
+$wgAutoConfirmAge   = 4 * 24 * 60 * 60;
 $wgAutoConfirmCount = 20;
 $wgGroupPermissions['autoconfirmed']['createaccount'] = false;
 $wgGroupPermissions['autoconfirmed']['sendemail']     = true;
 $wgGroupPermissions['autoconfirmed']['skipcaptcha']   = true;
 
 // Autopatrolled
+$wgRestrictionLevels[] = 'autopatrolled';
 $wgGroupPermissions['autopatrolled'] = $wgGroupPermissions['autoconfirmed'];
 $wgGroupPermissions['autopatrolled']['autopatrol']   = true;
 
 // Trusted
+$wgRestrictionLevels[] = 'trusted';
 $wgGroupPermissions['trusted'] = $wgGroupPermissions['autopatrolled'];
 $wgGroupPermissions['trusted']['edittemplate']  = true;
 $wgGroupPermissions['trusted']['editinterface'] = true;
@@ -381,13 +435,16 @@ $wgGroupPermissions['sysop']['editinterface']       = true;
 $wgGroupPermissions['sysop']['edittemplate']        = true;
 $wgGroupPermissions['sysop']['interwiki']           = true;
 $wgGroupPermissions['sysop']['investigate']         = true;
-$wgGroupPermissions['sysop']['mwa-createlocalaccount'] = true;
 $wgGroupPermissions['sysop']['mwoauthmanageconsumer'] = true;
 $wgGroupPermissions['sysop']['mwoauthproposeconsumer'] = true;
 $wgGroupPermissions['sysop']['purge']               = true;
 $wgGroupPermissions['sysop']['smw-admin']           = true;
 $wgGroupPermissions['sysop']['smw-pageedit']        = true;
 $wgGroupPermissions['sysop']['smw-schemaedit']      = true;
+
+if ($wikiID == 'applewiki') {
+	$wgGroupPermissions['sysop']['mwa-createlocalaccount'] = true;
+}
 
 // Delete unneeded groups
 foreach (['bureaucrat', 'checkuser', 'suppress', 'smwadministrator', 'smwcurator', 'smweditor'] as $group) {
@@ -442,19 +499,21 @@ $wgAccountCreationThrottle = [
 $wgPopupsReferencePreviewsBetaFeature = false;
 
 // DiscordRCFeed
-$wgRCFeeds['discord-applewiki'] = [
-	'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
-// 	'omit_bots' => true
-];
-$wgRCFeeds['discord-hackdifferent'] = [
-	'url' => $_ENV['WG_DISCORD_WEBHOOK_HACKDIFFERENT'],
-	'omit_bots' => true,
-	'omit_log_types' => ['block', 'newusers', 'patrol']
-];
+if ($wikiID == 'applewiki') {
+	$wgRCFeeds['discord-applewiki'] = [
+		'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
+	// 	'omit_bots' => true
+	];
+	$wgRCFeeds['discord-hackdifferent'] = [
+		'url' => $_ENV['WG_DISCORD_WEBHOOK_HACKDIFFERENT'],
+		'omit_bots' => true,
+		'omit_log_types' => ['block', 'newusers', 'patrol']
+	];
 
-// MediaWikiAuth
-$wgMediaWikiAuthApiUrl = 'https://www.theiphonewiki.com/w/api.php';
-$wgMediaWikiAuthDisableAccountCreation = true;
+	// MediaWikiAuth
+	$wgMediaWikiAuthApiUrl = 'https://www.theiphonewiki.com/w/api.php';
+	$wgMediaWikiAuthDisableAccountCreation = true;
+}
 
 // Article count behavior ({{NUMBEROFARTICLES}} etc)
 $wgArticleCountMethod = 'any';
@@ -473,7 +532,9 @@ $wgReplaceTextResultsLimit = 1000;
 $wgScribuntoDefaultEngine = 'luasandbox';
 
 // Semantic MediaWiki
-enableSemantics($hostname);
+if (function_exists('enableSemantics')) {
+	enableSemantics($hostname);
+}
 
 $smwgPDefaultType         = '_txt';
 $smwgQueryResultCacheType = 'redis';
@@ -482,28 +543,27 @@ $smwgEnabledQueryDependencyLinksStore = true;
 $smwgQFilterDuplicates    = true;
 $smwgChangePropagationProtection = false;
 
-$smwgNamespacesWithSemanticLinks[NS_KEYS]       = true;
-$smwgNamespacesWithSemanticLinks[NS_DEV]        = true;
-$smwgNamespacesWithSemanticLinks[NS_FILESYSTEM] = true;
-
-// Override to use SVG file rather than (ugh) inline base64 PNG
-// $wgFooterIcons['poweredby']['semanticmediawiki'] = [
-// 	'src' => "$wgResourceBasePath/resources/applewiki/poweredby-smw.svg",
-// 	'url' => 'https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki',
-// 	'alt' => 'Powered by Semantic MediaWiki',
-// 	'class' => 'smw-footer'
-// ];
-$wgFooterIcons['poweredby']['semanticmediawiki'] = [];
+if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
+	$smwgNamespacesWithSemanticLinks[NS_KEYS]       = true;
+	$smwgNamespacesWithSemanticLinks[NS_DEV]        = true;
+	$smwgNamespacesWithSemanticLinks[NS_FILESYSTEM] = true;
+}
 
 // Use custom subtle MediaWiki icon
-$wgFooterIcons['poweredby']['mediawiki']['src'] = "$wgResourceBasePath/resources/applewiki/poweredby-mediawiki.svg";
+$wgFooterIcons['poweredby']['mediawiki']['src'] = "$wgResourceBasePath/resources/common/poweredby-mediawiki.svg";
+
+// Disable SMW icon
+$wgFooterIcons['poweredby']['semanticmediawiki'] = [];
 
 // WikiSEO
 $wgWikiSeoEnableAutoDescription = true;
 $wgWikiSeoOverwritePageImage    = true;
 $wgWikiSeoSocialImageShowLogo   = true;
 $wgWikiSeoSocialImageShowAuthor = false;
-$wgWikiSeoDefaultImage = "$wgServer$wgResourceBasePath/resources/$wikiID/banner.png";
+
+if ($wikiID != 'kirbwiki') {
+	$wgWikiSeoDefaultImage = "$wgServer$wgResourceBasePath/resources/$wikiID/banner.png";
+}
 
 // Citizen
 $wgCitizenShowPageTools = 'permission';
@@ -513,11 +573,16 @@ $wgCitizenMaxSearchResults = 10;
 
 // RelatedArticles
 $wgRelatedArticlesFooterAllowedSkins[] = 'citizen';
-$wgRelatedArticlesFooterAllowedNamespaces = [NS_MAIN, NS_DEV, NS_FILESYSTEM];
+$wgRelatedArticlesFooterAllowedNamespaces = [NS_MAIN];
 $wgRelatedArticlesUseCirrusSearchApiUrl = "$wgScriptPath/api.php";
 $wgRelatedArticlesDescriptionSource   = 'textextracts';
 $wgRelatedArticlesUseCirrusSearch     = true;
 $wgRelatedArticlesOnlyUseCirrusSearch = true;
+
+if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
+	$wgRelatedArticlesFooterAllowedNamespaces[] = NS_DEV;
+	$wgRelatedArticlesFooterAllowedNamespaces[] = NS_FILESYSTEM;
+}
 
 // TextExtracts
 $wgExtractsExtendOpenSearchXml = true;
@@ -537,30 +602,32 @@ $wgVisualEditorUseSingleEditTab  = true;
 // Allow selecting how long to store a title in the watchlist
 $wgWatchlistExpiry = true;
 
-// Exclude key pages from Special:Random, except if specifically requested (Special:Random/Keys)
-$wgHooks['RandomPageQuery'][] = function(&$tables, &$conds, &$joinConds) {
-	if ($conds['page_namespace'] != [NS_KEYS]) {
-		$conds[] = 'page_namespace != ' . NS_KEYS;
-	}
-};
+if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
+	// Exclude key pages from Special:Random, except if specifically requested (Special:Random/Keys)
+	$wgHooks['RandomPageQuery'][] = function(&$tables, &$conds, &$joinConds) {
+		if ($conds['page_namespace'] != [NS_KEYS]) {
+			$conds[] = 'page_namespace != ' . NS_KEYS;
+		}
+	};
 
-// Exclude key pages from Special:WantedPages
-$wgHooks['WantedPages::getQueryInfo'][] = function(&$wantedPages, &$query) {
-	$query['conds'][] = 'pl_namespace != ' . NS_KEYS;
-};
+	// Exclude key pages from Special:WantedPages
+	$wgHooks['WantedPages::getQueryInfo'][] = function(&$wantedPages, &$query) {
+		$query['conds'][] = 'pl_namespace != ' . NS_KEYS;
+	};
 
-// Footer links
-$wgHooks['SkinAddFooterLinks'][] = function($skin, $key, &$footerLinks) {
-	if ($key == 'places') {
-		$footerLinks['disclaimers'] = Html::element('a', ['href' => '/wiki/The_Apple_Wiki:Ground_rules'], 'Ground rules');
-	}
-};
+	// Footer links
+	$wgHooks['SkinAddFooterLinks'][] = function($skin, $key, &$footerLinks) {
+		if ($key == 'places') {
+			$footerLinks['disclaimers'] = Html::element('a', ['href' => '/wiki/The_Apple_Wiki:Ground_rules'], 'Ground rules');
+		}
+	};
+}
 
 // Footer credits
 $wgMaxCredits = 2;
 
 // Known URL schemes that can be auto-linked
-$wgUrlProtocols = ['http://', 'https://', 'ftp://', 'ftps://'];
+$wgUrlProtocols = ['//', 'http://', 'https://', 'ftp://', 'ftps://'];
 
 // Link to GitHub commits on Special:Version
 $wgGitRepositoryViewers['https://github.com/(.*?)(.git)?'] = 'https://github.com/$1/commit/%H';
@@ -569,8 +636,10 @@ $wgGitRepositoryViewers['https://github.com/(.*?)(.git)?'] = 'https://github.com
 // https://www.mediawiki.org/wiki/Manual:Edit_Recovery
 // TODO: Users didn’t like this on 1.41 because it lacks the ability to discard previous changes,
 // re-enable with 1.42
-// $wgEnableEditRecovery = true;
-// $wgDefaultUserOptions['editrecovery'] = 1;
+if ($wikiID != 'applewiki') {
+	$wgEnableEditRecovery = true;
+	$wgDefaultUserOptions['editrecovery'] = 1;
+}
 
 // CirrusSearch
 $wgSearchType = 'CirrusSearch';

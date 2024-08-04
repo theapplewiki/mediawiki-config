@@ -69,5 +69,5 @@
 		"queues": ["127.0.0.1:6379"]
 	},
 
-	"dispatcher": "/srv/applewiki/runjobs.sh --wiki=applewiki --type=%(type)x --maxtime=%(maxtime)x --memory-limit=%(maxmem)x --result=json"
+	"dispatcher": "/srv/wiki/runjobs.sh --wiki=%(db)x --type=%(type)x --maxtime=%(maxtime)x --memory-limit=%(maxmem)x --result=json"
 }

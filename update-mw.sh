@@ -14,4 +14,4 @@ composer update --no-dev --optimize-autoloader
 cd ..
 
 systemctl daemon-reload
-systemctl restart applewiki-*
+systemctl restart wiki-*.service

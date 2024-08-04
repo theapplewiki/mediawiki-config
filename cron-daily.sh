@@ -1,8 +1,10 @@
 #!/bin/bash
-cd /srv/applewiki
+cd /srv/wiki
 set -e
 
-for i in applewiki; do
+source .env
+
+for i in $WIKIS; do
 	# Update sitemap
 	nice docker compose exec mediawiki \
 		php maintenance/run.php --wiki $i generateSitemap --quiet --fspath=/var/www/html/sitemap --compress=no --urlpath=/sitemap

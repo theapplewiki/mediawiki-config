@@ -13,7 +13,7 @@ rm -rf $backupdir
 mkdir $backupdir
 chmod 000 $backupdir
 
-for i in applewiki; do
+for i in $WIKIS; do
 	docker compose exec database \
 		bash -c 'mariadb-dump --single-transaction -uroot -p"$MYSQL_ROOT_PASSWORD" '$i | zstd $qflag --fast=8 -o $backupdir/$i.sql.zst
 	tar c \

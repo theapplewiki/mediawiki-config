@@ -3,7 +3,7 @@ ver=REL1_41
 
 set -e
 
-cd /srv/applewiki/html
+cd /srv/wiki/html
 for i in {extensions,skins}/*; do
 	[[ -d $i/.git ]] || continue
 	printf '\n\n%s\n\n' "$i"
@@ -26,7 +26,11 @@ docker compose exec mediawiki \
 
 # rm -rf cache/*
 
-docker compose exec mediawiki \
-	php maintenance/run.php --wiki applewiki update --quick
-docker compose exec mediawiki \
-	php maintenance/run.php --wiki applewiki update --quick
+source .env
+
+for i in $WIKIS; do
+	docker compose exec mediawiki \
+		php maintenance/run.php --wiki $i update --quick
+	docker compose exec mediawiki \
+		php maintenance/run.php --wiki $i update --quick
+done
