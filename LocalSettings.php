@@ -421,6 +421,7 @@ $wgGroupPermissions['trusted']['move']          = true;
 $wgGroupPermissions['trusted']['patrol']        = true;
 
 // Bots
+$wgRestrictionLevels[] = 'bot';
 $wgGroupPermissions['bot']['createaccount'] = false;
 $wgGroupPermissions['bot']['edit']          = true;
 $wgGroupPermissions['bot']['mwoauthproposeconsumer'] = true;

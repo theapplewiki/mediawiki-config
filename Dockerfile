@@ -11,6 +11,7 @@ RUN set -eux; \
 		pecl install imagick luasandbox redis; \
 		docker-php-ext-install -j $(nproc) pcntl; \
 		docker-php-ext-enable imagick luasandbox pcntl redis; \
+		apt-get clean; \
 		rm -rf /tmp/pear /var/lib/apt/lists/*
 
 CMD ["php-fpm"]
