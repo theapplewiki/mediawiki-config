@@ -28,7 +28,7 @@ docker compose exec mediawiki \
 
 for i in $WIKIS; do
 	docker compose exec mediawiki \
-		php maintenance/run.php --wiki $i update --quick
+		maintenance/run --wiki $i update --quick
 	docker compose exec mediawiki \
-		php maintenance/run.php --wiki $i update --quick
+		maintenance/run --wiki $i update --quick
 done

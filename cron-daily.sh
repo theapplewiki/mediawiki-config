@@ -7,15 +7,19 @@ source .env
 for i in $WIKIS; do
 	# Update sitemap
 	nice docker compose exec mediawiki \
-		php maintenance/run.php --wiki $i generateSitemap --quiet --fspath=/var/www/html/sitemap --compress=no --urlpath=/sitemap
+		maintenance/run --wiki $i generateSitemap --quiet --fspath=/var/www/html/sitemap --compress=no --urlpath=/sitemap
 
 	for i in html/sitemap/*.xml; do
 		nice -n 19 ionice -c 3 gzip -9 < "$i" > "$i".gz
 	done
 
-	# Needed due to $wgMiserMode
+	# Update special pages for miser mode
 	nice docker compose exec mediawiki \
-		php maintenance/run.php --wiki $i updateSpecialPages --quiet
+		maintenance/run --wiki $i updateSpecialPages --quiet
+
+	# Process Echo notifications
+	nice docker compose exec mediawiki \
+		maintenance/run --wiki $i Echo:processEchoEmailBatch --quiet
 done
 
 # Make backup

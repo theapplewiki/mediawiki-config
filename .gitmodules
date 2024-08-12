@@ -55,6 +55,14 @@
 	path = html/extensions/DiscordRCFeed
 	url = https://github.com/wikimedia/mediawiki-extensions-DiscordRCFeed.git
 	branch = REL1_41
+[submodule "html/extensions/DiscussionTools"]
+	path = html/extensions/DiscussionTools
+	url = https://github.com/wikimedia/mediawiki-extensions-DiscussionTools.git
+	branch = REL1_41
+[submodule "html/extensions/Echo"]
+	path = html/extensions/Echo
+	url = https://github.com/wikimedia/mediawiki-extensions-Echo.git
+	branch = REL1_41
 [submodule "html/extensions/Elastica"]
 	path = html/extensions/Elastica
 	url = https://github.com/wikimedia/mediawiki-extensions-Elastica.git
@@ -74,6 +82,10 @@
 [submodule "html/extensions/Linter"]
 	path = html/extensions/Linter
 	url = https://github.com/wikimedia/mediawiki-extensions-Linter.git
+	branch = REL1_41
+[submodule "html/extensions/LoginNotify"]
+	path = html/extensions/LoginNotify
+	url = https://github.com/wikimedia/mediawiki-extensions-LoginNotify.git
 	branch = REL1_41
 [submodule "html/extensions/MediaWikiAuth"]
 	path = html/extensions/MediaWikiAuth
@@ -165,6 +177,10 @@
 [submodule "html/extensions/TextExtracts"]
 	path = html/extensions/TextExtracts
 	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts.git
+	branch = REL1_41
+[submodule "html/extensions/Thanks"]
+	path = html/extensions/Thanks
+	url = https://github.com/wikimedia/mediawiki-extensions-Thanks.git
 	branch = REL1_41
 [submodule "html/extensions/VisualEditor"]
 	path = html/extensions/VisualEditor
