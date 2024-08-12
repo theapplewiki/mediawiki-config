@@ -47,6 +47,10 @@
 [submodule "html/extensions/Details"]
 	path = html/extensions/Details
 	url = https://github.com/chariz/mediawiki-extensions-Details.git
+[submodule "html/extensions/Disambiguator"]
+	path = html/extensions/Disambiguator
+	url = https://github.com/wikimedia/mediawiki-extensions-Disambiguator.git
+	branch = REL1_41
 [submodule "html/extensions/DiscordRCFeed"]
 	path = html/extensions/DiscordRCFeed
 	url = https://github.com/wikimedia/mediawiki-extensions-DiscordRCFeed.git
@@ -114,6 +118,10 @@
 	path = html/extensions/ReplaceText
 	url = https://github.com/wikimedia/mediawiki-extensions-ReplaceText.git
 	branch = REL1_41
+[submodule "html/extensions/RevisionSlider"]
+	path = html/extensions/RevisionSlider
+	url = https://github.com/wikimedia/mediawiki-extensions-RevisionSlider.git
+	branch = REL1_41
 [submodule "html/extensions/Scribunto"]
 	path = html/extensions/Scribunto
 	url = https://github.com/wikimedia/mediawiki-extensions-Scribunto.git
@@ -150,6 +158,10 @@
 [submodule "html/extensions/TemplateStylesExtender"]
 	path = html/extensions/TemplateStylesExtender
 	url = https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender.git
+[submodule "html/extensions/TemplateWizard"]
+	path = html/extensions/TemplateWizard
+	url = https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git
+	branch = REL1_41
 [submodule "html/extensions/TextExtracts"]
 	path = html/extensions/TextExtracts
 	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts.git
