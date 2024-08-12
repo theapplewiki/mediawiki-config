@@ -104,8 +104,8 @@
 	branch = REL1_41
 [submodule "html/extensions/RelatedArticles"]
 	path = html/extensions/RelatedArticles
-	url = https://github.com/wikimedia/mediawiki-extensions-RelatedArticles.git
-	branch = REL1_41
+	url = https://github.com/theapplewiki/mediawiki-extensions-RelatedArticles.git
+	branch = kirb/feature/other-namespaces
 [submodule "html/extensions/Renameuser"]
 	path = html/extensions/Renameuser
 	url = https://github.com/wikimedia/mediawiki-extensions-Renameuser.git
