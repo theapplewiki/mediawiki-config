@@ -231,7 +231,7 @@ $wgNamespacesWithSubpages[NS_MAIN] = true;
 
 $wgSitemapNamespaces = [NS_MAIN, NS_USER, NS_PROJECT, NS_HELP, NS_CATEGORY];
 
-if ($wikiID == 'applewiki') {
+if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	define('NS_KEYS',            2304);
 	define('NS_KEYS_TALK',       2305);
 	define('NS_DEV',             2306);
@@ -245,6 +245,22 @@ if ($wikiID == 'applewiki') {
 	$wgExtraNamespaces[NS_DEV_TALK]        = 'Dev_talk';
 	$wgExtraNamespaces[NS_FILESYSTEM]      = 'Filesystem';
 	$wgExtraNamespaces[NS_FILESYSTEM_TALK] = 'Filesystem_talk';
+
+	$wgNamespaceAliases['FS'] = NS_FILESYSTEM;
+
+	$wgContentNamespaces[] = NS_KEYS;
+	$wgContentNamespaces[] = NS_DEV;
+	$wgContentNamespaces[] = NS_FILESYSTEM;
+
+	$wgNamespacesToBeSearchedDefault[NS_DEV]        = true;
+	$wgNamespacesToBeSearchedDefault[NS_FILESYSTEM] = true;
+
+	$wgNamespacesWithSubpages[NS_DEV]        = true;
+	$wgNamespacesWithSubpages[NS_FILESYSTEM] = true;
+
+	$wgSitemapNamespaces[] = NS_KEYS;
+	$wgSitemapNamespaces[] = NS_DEV;
+	$wgSitemapNamespaces[] = NS_FILESYSTEM;
 }
 
 $wgPageImagesNamespaces = $wgContentNamespaces;
@@ -254,7 +270,7 @@ if ($wikiID != 'applewiki') {
 	$wgNamespaceProtection[NS_TEMPLATE] = ['editinterface', 'edittemplate'];
 }
 
-$wgNamespaceProtection[NS_MODULE]   = ['edittemplate'];
+$wgNamespaceProtection[NS_MODULE] = ['edittemplate'];
 
 // Extensions
 wfLoadExtension('Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json");
