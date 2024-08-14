@@ -548,6 +548,9 @@ $wgArticleCountMethod = 'any';
 $wgRunJobsAsync = false;
 $wgJobRunRate   = 0;
 
+// Echo
+$wgEchoUseJobQueue = true;
+
 // ParserFunctions
 $wgPFEnableStringFunctions = true;
 
