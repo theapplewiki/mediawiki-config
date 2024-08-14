@@ -335,9 +335,12 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	wfLoadExtension('SemanticMediaWiki');
 	wfLoadExtension('SemanticScribunto');
 } elseif ($wikiID == 'kirbwiki') {
-	wfLoadSkin('MonoBookLegacy');
+	$legacySkin = file_exists("$IP/skins/MonoBookLegacy") ? 'MonoBookLegacy' : 'MonoBook';
+	if ($legacySkin == 'MonoBookLegacy') {
+		wfLoadSkin('MonoBookLegacy');
+	}
 
-	$wgDefaultSkin = IS_LEGACY ? 'monobooklegacy' : 'citizen';
+	$wgDefaultSkin = IS_LEGACY ? $legacySkin : 'citizen';
 }
 
 // Parsoid
