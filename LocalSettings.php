@@ -53,7 +53,7 @@ switch ($wikiID) {
 		$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
 		$wgLogos = [
 			'1x' => $wgAppleTouchIcon,
-			'svg' => "$wgResourceBasePath/resources/applewiki/logo-square.svg",
+			'svg' => "$wgResourceBasePath/resources/$wikiID/logo-square.svg",
 			'wordmark' => [
 				'src' => "$wgResourceBasePath/resources/$wikiID/logo-wordmark.svg",
 				'width' => 135,
