@@ -421,6 +421,7 @@ $wgGroupPermissions['user']['createaccount'] = false;
 $wgGroupPermissions['emailconfirmed']['createaccount'] = false;
 $wgGroupPermissions['emailconfirmed']['edit']       = true;
 $wgGroupPermissions['emailconfirmed']['upload']     = true;
+$wgGroupPermissions['emailconfirmed']['mwoauthproposeconsumer'] = true;
 
 // Logged in user who has made sufficient edits
 $wgAutoConfirmAge   = 4 * 24 * 60 * 60;
