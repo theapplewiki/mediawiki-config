@@ -385,7 +385,7 @@ $wgHCaptchaSendRemoteIP = true;
 
 // DNS denylist
 $wgEnableDnsBlacklist = true;
-$wgDnsBlacklistUrls   = ['zen.spamhaus.org.', 'spam.dnsbl.sorbs.net.', 'rbl.dnsbl.im.', 'noptr.spamrats.com.', 'all.s5h.net.', 'z.mailspike.net.'];
+$wgDnsBlacklistUrls   = ['xbl.spamhaus.org.', 'spam.dnsbl.sorbs.net.', 'rbl.dnsbl.im.', 'noptr.spamrats.com.', 'all.s5h.net.', 'z.mailspike.net.'];
 $wgSuspiciousIpExpiry = 60 * 60; // 1 hour
 
 // User CSS/JS
