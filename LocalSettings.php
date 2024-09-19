@@ -531,7 +531,7 @@ $wgPopupsReferencePreviewsBetaFeature = false;
 if ($wikiID == 'applewiki') {
 	$wgRCFeeds['discord-applewiki'] = [
 		'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
-	// 	'omit_bots' => true
+	 	'omit_bots' => true
 	];
 	$wgRCFeeds['discord-hackdifferent'] = [
 		'url' => $_ENV['WG_DISCORD_WEBHOOK_HACKDIFFERENT'],
