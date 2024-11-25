@@ -152,12 +152,12 @@ $wgJobTypeConf['default'] = [
 	'class'       => 'JobQueueRedis',
 	'redisServer' => 'redis:6379',
 	'redisConfig' => [],
-	'claimTTL'    => 3600,
+	'claimTTL'    => 60 * 60, // 1 hour
 	'daemonized'  => true
 ];
 
 $wgObjectCacheSessionExpiry = 24 * 60 * 60; // 1 day
-$wgParserCacheExpireTime = 30 * 60; // 30 mins
+$wgParserCacheExpireTime = 60 * 60; // 1 hour
 $wgTranscludeCacheExpiry = 24 * 60 * 60; // 1 day
 $wgEnableSidebarCache    = true;
 $wgUseLocalMessageCache  = true;
@@ -352,8 +352,9 @@ $wgParserEnableLegacyMediaDOM = PHP_SAPI != 'cli' && !IS_LEGACY;
 $wgUseCdn            = true;
 $wgUsePrivateIPs     = true;
 $wgCdnServersNoPurge = ['0.0.0.0/0'];
-$wgCdnMaxAge         = 60 * 10;
-$wgForcedRawSMaxage  = 60 * 30;
+$wgCdnMaxAge         = 24 * 60 * 60; // 1 day
+$wgForcedRawSMaxage  = 15 * 60; // 15 mins
+$wgCdnMatchParameterOrder = true;
 
 // Add <link rel="canonical">
 $wgEnableCanonicalServerLink = true;
@@ -383,7 +384,7 @@ $wgHCaptchaSendRemoteIP = true;
 // DNS denylist
 $wgEnableDnsBlacklist = true;
 $wgDnsBlacklistUrls   = ['xbl.spamhaus.org.', 'spam.dnsbl.sorbs.net.', 'rbl.dnsbl.im.', 'noptr.spamrats.com.', 'all.s5h.net.', 'z.mailspike.net.'];
-$wgSuspiciousIpExpiry = 60 * 60; // 1 hour
+$wgSuspiciousIpExpiry = 24 * 60 * 60; // 1 day
 
 // User CSS/JS
 $wgAllowUserCss = true;
@@ -424,7 +425,7 @@ $wgGroupPermissions['emailconfirmed']['upload']     = true;
 $wgGroupPermissions['emailconfirmed']['mwoauthproposeconsumer'] = true;
 
 // Logged in user who has made sufficient edits
-$wgAutoConfirmAge   = 4 * 24 * 60 * 60;
+$wgAutoConfirmAge   = 4 * 24 * 60 * 60; // 4 days
 $wgAutoConfirmCount = 20;
 $wgGroupPermissions['autoconfirmed']['createaccount'] = false;
 $wgGroupPermissions['autoconfirmed']['sendemail']     = true;
@@ -517,7 +518,7 @@ $wgPasswordPolicy['policies']['default']['MinimalPasswordLength'] = 10;
 $wgAccountCreationThrottle = [
 	[
 		'count'   => 10,
-		'seconds' => 60 * 60 * 24 * 7
+		'seconds' => 60 * 60 * 24 * 7 // 1 week
 	]
 ];
 
@@ -528,7 +529,7 @@ $wgPopupsReferencePreviewsBetaFeature = false;
 if ($wikiID == 'applewiki') {
 	$wgRCFeeds['discord-applewiki'] = [
 		'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
-	 	'omit_bots' => true
+		'omit_bots' => true
 	];
 	$wgRCFeeds['discord-hackdifferent'] = [
 		'url' => $_ENV['WG_DISCORD_WEBHOOK_HACKDIFFERENT'],
@@ -567,7 +568,7 @@ if (function_exists('enableSemantics')) {
 
 $smwgPDefaultType         = '_txt';
 $smwgQueryResultCacheType = 'redis';
-$smwgQueryResultCacheLifetime = 30 * 60; // 30 mins
+$smwgQueryResultCacheLifetime = 6 * 60 * 60; // 6 hours
 $smwgEnabledQueryDependencyLinksStore = true;
 $smwgQFilterDuplicates    = true;
 $smwgChangePropagationProtection = false;
