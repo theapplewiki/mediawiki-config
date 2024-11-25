@@ -37,10 +37,9 @@ if (defined('MW_DB')) {
 }
 
 
-define('IS_LEGACY', $wikiID == 'kirbwiki' &&
-	(@$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http' ||
-	preg_match('/MSIE|Trident|Win(dows)? ?(9[58x]|Me|NT 5\.)/i', @$_SERVER['HTTP_USER_AGENT'] || ''))
-);
+// Legacy browsers: Mostly defined as those that don’t support CSS Grid.
+// Accessed over HTTP, or Cloudflare rewrite rule passes ?__is_legacy=1
+define('IS_LEGACY', @$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http' || @$_GET['__legacy_browser'] == '1');
 
 
 switch ($wikiID) {
@@ -322,26 +321,24 @@ wfLoadExtension('VisualEditor');
 wfLoadExtension('WikiEditor');
 wfLoadExtension('WikiSEO');
 
+if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
+	wfLoadExtension('MediaWikiAuth');
+	wfLoadExtension('SemanticMediaWiki');
+	wfLoadExtension('SemanticScribunto');
+}
+
 // Skins
 wfLoadSkin('MinervaNeue');
 wfLoadSkin('MonoBook');
 wfLoadSkin('Vector');
 wfLoadSkin('Citizen');
 
-$wgDefaultSkin = 'citizen';
-
-if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
-	wfLoadExtension('MediaWikiAuth');
-	wfLoadExtension('SemanticMediaWiki');
-	wfLoadExtension('SemanticScribunto');
-} elseif ($wikiID == 'kirbwiki') {
-	$legacySkin = file_exists("$IP/skins/MonoBookLegacy") ? 'MonoBookLegacy' : 'MonoBook';
-	if ($legacySkin == 'MonoBookLegacy') {
-		wfLoadSkin('MonoBookLegacy');
-	}
-
-	$wgDefaultSkin = IS_LEGACY ? $legacySkin : 'citizen';
+$legacySkin = file_exists("$IP/skins/MonoBookLegacy") ? 'MonoBookLegacy' : 'Vector';
+if ($legacySkin == 'MonoBookLegacy') {
+	wfLoadSkin('MonoBookLegacy');
 }
+
+$wgDefaultSkin = IS_LEGACY ? $legacySkin : 'citizen';
 
 // Parsoid
 $wgParsoidSettings = [
@@ -349,7 +346,7 @@ $wgParsoidSettings = [
 	'linting'   => true
 ];
 
-$wgParserEnableLegacyMediaDOM = !IS_LEGACY;
+$wgParserEnableLegacyMediaDOM = PHP_SAPI != 'cli' && !IS_LEGACY;
 
 // Reverse proxy
 $wgUseCdn            = true;
