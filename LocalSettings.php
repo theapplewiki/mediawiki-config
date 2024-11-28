@@ -373,7 +373,8 @@ $wgCSPHeader = [
 	'frame-ancestors' => ['\'none\''],
 	'upgrade-insecure-requests' => true,
 	'block-all-mixed-content' => true,
-	'disown-opener'   => true
+	'disown-opener'   => true,
+	'report-uri'      => false
 ];
 
 // Captcha
