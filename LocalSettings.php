@@ -296,6 +296,7 @@ wfLoadExtension('Interwiki');
 wfLoadExtension('Linter');
 wfLoadExtension('LoginNotify');
 wfLoadExtension('MultimediaViewer');
+wfLoadExtension('MultiPurge');
 wfLoadExtension('OATHAuth');
 wfLoadExtension('OAuth');
 wfLoadExtension('PageImages');
@@ -682,4 +683,15 @@ $wgCirrusSearchCompletionSuggesterSubphrases = [
 	'use'   => true,
 	'type'  => 'anywords',
 	'limit' => 10
+];
+
+// MultiPurge
+$wgMultiPurgeEnabledServices = ['Cloudflare'];
+$wgMultiPurgeServiceOrder = ['Cloudflare'];
+$wgMultiPurgeCloudFlareZoneId = $_ENV['WG_CLOUDFLARE_ZONE'];
+$wgMultiPurgeCloudFlareApiToken = $_ENV['WG_CLOUDFLARE_TOKEN'];
+$wgMultiPurgeRunInQueue = true;
+$wgMultiPurgeStaticPurges = [
+	'Startup Script' => 'load.php?lang=en&modules=startup&only=scripts&raw=1&skin=citizen',
+	'Site Styles' => 'load.php?lang=en&modules=site.styles&only=styles&skin=citizen'
 ];

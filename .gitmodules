@@ -194,3 +194,6 @@
 	path = html/extensions/WikiSEO
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiSEO.git
 	branch = REL1_41
+[submodule "html/extensions/MultiPurge"]
+	path = html/extensions/MultiPurge
+	url = https://github.com/octfx/mediawiki-extensions-MultiPurge.git
