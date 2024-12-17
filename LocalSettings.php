@@ -370,6 +370,7 @@ $wgBreakFrames       = true;
 $wgReferrerPolicy    = ['strict-origin-when-cross-origin', 'strict-origin'];
 $wgCSPHeader = [
 	'default-src'     => ['\'self\''],
+	'script-src'      => ['\'self\'', 'https://static.cloudflareinsights.com'],
 	'object-src'      => ['\'none\''],
 	'frame-ancestors' => ['\'none\''],
 	'upgrade-insecure-requests' => true,
@@ -401,82 +402,141 @@ $wgEnableScaryTranscluding = true;
 // Permissions
 
 // Everyone
+$wgGroupPermissions['*'] = [
+	'createaccount' => false,
+	'read' => true
+];
+
 if ($wikiID == 'applewiki') {
 	// Set to false in an emergency
 	$wgGroupPermissions['*']['createaccount'] = true;
-} else {
-	$wgGroupPermissions['*']['createaccount'] = false;
 }
 
-$wgGroupPermissions['*']['edit']   = false;
-$wgGroupPermissions['*']['purge']  = false;
-$wgGroupPermissions['*']['upload'] = false;
-
 // Logged in user
-$wgGroupPermissions['user']['edit']      = false;
-$wgGroupPermissions['user']['sendemail'] = false;
-$wgGroupPermissions['user']['upload']    = false;
+$wgGroupPermissions['user']['edit']   = false;
+$wgGroupPermissions['user']['upload'] = false;
 
 // Don't let users create users
-$wgGroupPermissions['user']['createaccount'] = false;
+$wgRevokePermissions['user']['createaccount'] = true;
 
 // Logged in user with confirmed email
-$wgGroupPermissions['emailconfirmed']['createaccount'] = false;
-$wgGroupPermissions['emailconfirmed']['edit']       = true;
-$wgGroupPermissions['emailconfirmed']['upload']     = true;
-$wgGroupPermissions['emailconfirmed']['mwoauthproposeconsumer'] = true;
+$wgGroupPermissions['emailconfirmed'] = [
+	'edit'   => true,
+	'mwoauthproposeconsumer' => true,
+	'upload' => true
+];
 
 // Logged in user who has made sufficient edits
 $wgAutoConfirmAge   = 4 * 24 * 60 * 60; // 4 days
 $wgAutoConfirmCount = 20;
-$wgGroupPermissions['autoconfirmed']['createaccount'] = false;
-$wgGroupPermissions['autoconfirmed']['sendemail']     = true;
-$wgGroupPermissions['autoconfirmed']['skipcaptcha']   = true;
-
-// Autopatrolled
-$wgRestrictionLevels[] = 'autopatrolled';
-$wgGroupPermissions['autopatrolled'] = $wgGroupPermissions['autoconfirmed'];
-$wgGroupPermissions['autopatrolled']['autopatrol']   = true;
+$wgGroupPermissions['autoconfirmed'] = [
+	'autoconfirmed' => true,
+	'editsemiprotected' => true,
+	'sendemail'     => true,
+	'skipcaptcha'   => true,
+	'reupload'      => true
+];
 
 // Trusted
 $wgRestrictionLevels[] = 'trusted';
-$wgGroupPermissions['trusted'] = $wgGroupPermissions['autopatrolled'];
-$wgGroupPermissions['trusted']['edittemplate']  = true;
-$wgGroupPermissions['trusted']['editinterface'] = true;
-$wgGroupPermissions['trusted']['edittemplate']  = true;
-$wgGroupPermissions['trusted']['move']          = true;
-$wgGroupPermissions['trusted']['patrol']        = true;
+$wgGroupPermissions['trusted'] = $wgGroupPermissions['autoconfirmed'] + [
+	'apihighlimits'    => true,
+	'autopatrol'       => true,
+	'edittemplate'     => true,
+	'ipblock-exempt'   => true,
+	'mergehistory'     => true,
+	'move'             => true,
+	'move-categorypages' => true,
+	'move-subpages'    => true,
+	'movefile'         => true,
+	'noratelimit'      => true,
+	'patrol'           => true,
+	'purge'            => true,
+	'reupload-shared'  => true,
+	'suppressredirect' => true
+];
 
 // Bots
 $wgRestrictionLevels[] = 'bot';
-$wgGroupPermissions['bot']['createaccount'] = false;
-$wgGroupPermissions['bot']['edit']          = true;
-$wgGroupPermissions['bot']['mwoauthproposeconsumer'] = true;
-$wgGroupPermissions['bot']['skipcaptcha']   = true;
-$wgGroupPermissions['bot']['upload']        = true;
+$wgGroupPermissions['bot'] += $wgGroupPermissions['trusted'];
+
+// Interface admin
+$wgRestrictionLevels[] = 'interface-admin';
+$wgGroupPermissions['interface-admin'] = [
+	'editusercss'    => true,
+	'edituserjson'   => true,
+	'edituserjs'     => true,
+	'editsitecss'    => true,
+	'editsitejson'   => true,
+	'editsitejs'     => true,
+	'editinterface'  => true,
+	'edittemplate'   => true
+];
+
+// Moderator
+$wgRestrictionLevels[] = 'moderator';
+$wgGroupPermissions['moderator'] = $wgGroupPermissions['trusted'] + [
+	'abusefilter-hidden-log'   => true,
+	'abusefilter-hide-log'     => true,
+	'abusefilter-log-detail'   => true,
+	'abusefilter-log-private'  => true,
+	'abusefilter-modify-blocked-external-domains' => true,
+	'abusefilter-modify-restricted' => true,
+	'abusefilter-modify'       => true,
+	'abusefilter-revert'       => true,
+	'abusefilter-view-private' => true,
+	'block'          => true,
+	'blockemail'     => true,
+	'browsearchive'  => true,
+	'createaccount'  => true,
+	'delete'         => true,
+	'deletedhistory' => true,
+	'deletedtext'    => true,
+	'editprotected'  => true,
+	'hideuser'       => true,
+	'import'         => true,
+	'importupload'   => true,
+	'interwiki'      => true,
+	'markbotedits'   => true,
+	'move-rootuserpages' => true,
+	'noratelimit'    => true,
+	'protect'        => true,
+	'purge'          => true,
+	'renameuser'     => true,
+	'replacetext'    => true,
+	'rollback'       => true,
+	'smw-pageedit'   => true,
+	'smw-schemaedit' => true,
+	'undelete'       => true,
+	'unwatchedpages' => true,
+	'viewsuppressed' => true
+];
+
+// Un-revoke for mod/admin
+$wgRevokePermissions['user']['createaccount'] = false;
 
 // Admins
-$wgGroupPermissions['sysop']['checkuser-log']       = true;
-$wgGroupPermissions['sysop']['checkuser']           = true;
-$wgGroupPermissions['sysop']['createaccount']       = true;
-$wgGroupPermissions['sysop']['edit']                = true;
-$wgGroupPermissions['sysop']['editinterface']       = true;
-$wgGroupPermissions['sysop']['edittemplate']        = true;
-$wgGroupPermissions['sysop']['interwiki']           = true;
-$wgGroupPermissions['sysop']['investigate']         = true;
-$wgGroupPermissions['sysop']['mwoauthmanageconsumer'] = true;
-$wgGroupPermissions['sysop']['mwoauthproposeconsumer'] = true;
-$wgGroupPermissions['sysop']['purge']               = true;
-$wgGroupPermissions['sysop']['smw-admin']           = true;
-$wgGroupPermissions['sysop']['smw-pageedit']        = true;
-$wgGroupPermissions['sysop']['smw-schemaedit']      = true;
+$wgGroupPermissions['sysop'] += $wgGroupPermissions['moderator'] + $wgGroupPermissions['interface-admin'] + [
+	'checkuser-log'       => true,
+	'checkuser'           => true,
+	'createaccount'       => true,
+	'edit'                => true,
+	'interwiki'           => true,
+	'mwa-createlocalaccount' => true,
+	'mwoauthmanageconsumer'  => true,
+	'mwoauthproposeconsumer' => true,
+	'purge'               => true,
+	'smw-admin'           => true,
+	'smw-pageedit'        => true,
+	'smw-schemaedit'      => true,
+];
 
-if ($wikiID == 'applewiki') {
-	$wgGroupPermissions['sysop']['mwa-createlocalaccount'] = true;
-}
+// Un-revoke for mod/admin
+$wgRevokePermissions['sysop']['createaccount'] = false;
 
 // Delete unneeded groups
-foreach (['bureaucrat', 'checkuser', 'suppress', 'smwadministrator', 'smwcurator', 'smweditor'] as $group) {
+$merge_to_sysop = ['bureaucrat', 'checkuser', 'suppress', 'smwadministrator', 'smwcurator', 'smweditor', 'push-subscription-manager'];
+foreach ($merge_to_sysop as $group) {
 	if (isset($wgGroupPermissions[$group])) {
 		$wgGroupPermissions['sysop'] = $wgGroupPermissions[$group] + $wgGroupPermissions['sysop'];
 	}
@@ -490,7 +550,8 @@ foreach (['bureaucrat', 'checkuser', 'suppress', 'smwadministrator', 'smwcurator
 }
 
 $wgExtensionFunctions[] = function() use (&$wgGroupPermissions) {
-	foreach (['bureaucrat', 'checkuser', 'suppress', 'smwadministrator', 'smwcurator', 'smweditor'] as $group) {
+	global $merge_to_sysop;
+	foreach ($merge_to_sysop as $group) {
 		if (isset($wgGroupPermissions[$group])) {
 			$wgGroupPermissions['sysop'] = $wgGroupPermissions[$group] + $wgGroupPermissions['sysop'];
 		}
