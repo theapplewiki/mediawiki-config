@@ -162,6 +162,7 @@ $wgTranscludeCacheExpiry = 24 * 60 * 60; // 1 day
 $wgEnableSidebarCache    = true;
 $wgUseLocalMessageCache  = true;
 $wgMiserMode             = true;
+$wgQueryCacheLimit       = 10000;
 
 // Uploads
 $wgEnableUploads    = true;
