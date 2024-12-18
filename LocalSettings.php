@@ -514,7 +514,7 @@ $wgGroupPermissions['moderator'] = $wgGroupPermissions['trusted'] + [
 ];
 
 // Un-revoke for mod/admin
-$wgRevokePermissions['user']['createaccount'] = false;
+$wgRevokePermissions['moderator']['createaccount'] = false;
 
 // Admins
 $wgGroupPermissions['sysop'] += $wgGroupPermissions['moderator'] + $wgGroupPermissions['interface-admin'] + [
