@@ -327,6 +327,10 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	wfLoadExtension('MediaWikiAuth');
 	wfLoadExtension('SemanticMediaWiki');
 	wfLoadExtension('SemanticScribunto');
+
+	if (file_exists("$IP/extensions/WantedKeys")) {
+		wfLoadExtension('WantedKeys');
+	}
 }
 
 // Skins
