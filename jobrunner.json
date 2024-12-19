@@ -30,6 +30,7 @@
 				"cirrusSearchElasticaWrite"
 			]
 		},
+
 		"transcode": {
 			"runners": 1,
 			"include": [
@@ -51,14 +52,22 @@
 		"attempts": {
 			"*": 3
 		},
+
 		"claimTTL": {
 			"*": 3600,
-			"webVideoTranscode": 86400
+			"webVideoTranscode": 86400,
+			"cirrusSearchLinksUpdate": 7200,
+			"cirrusSearchElasticaWrite": 7200
 		},
+
 		"real": {
 			"*": 300,
+			"cirrusSearchLinksUpdate": 1200,
+			"cirrusSearchElasticaWrite": 1200,
+			"refreshLinks": 1200,
 			"webVideoTranscode": 86400
 		},
+
 		"memory": {
 			"*": "100M"
 		}

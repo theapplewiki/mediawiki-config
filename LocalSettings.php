@@ -750,6 +750,11 @@ $wgCirrusSearchCompletionSuggesterSubphrases = [
 	'type'  => 'anywords',
 	'limit' => 10
 ];
+$wgCirrusSearchWikimediaExtraPlugin['regex'] = [
+	'build' => true,
+	'use'   => true,
+	'max_inspect' => 10000
+];
 
 // MultiPurge
 $wgMultiPurgeEnabledServices = ['Cloudflare'];
