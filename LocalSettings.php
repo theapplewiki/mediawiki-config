@@ -721,6 +721,17 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	};
 }
 
+// Hack to fix MultiPurge not using absolute urls for images
+// https://github.com/octfx/mediawiki-extensions-MultiPurge/issues/4
+$wgHooks['MultiPurgeOnPurgeUrls'][] = function(&$urls) {
+	global $wgServer;
+	for ($i = 0; $i < count($urls); $i++) {
+		if ($urls[$i][0] == '/') {
+			$urls[$i] = $wgServer . $urls[$i];
+		}
+	}
+};
+
 // Footer credits
 $wgMaxCredits = 2;
 
