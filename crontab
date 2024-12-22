@@ -1,3 +1,4 @@
 MAILTO="root"
 
 30 0 * * * /srv/wiki/cron-daily.sh
+0 * * * * /srv/wiki/cron-hourly.sh

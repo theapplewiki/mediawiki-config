@@ -7,117 +7,117 @@
 [submodule "html/extensions/AbuseFilter"]
 	path = html/extensions/AbuseFilter
 	url = https://github.com/wikimedia/mediawiki-extensions-AbuseFilter.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/AdvancedSearch"]
 	path = html/extensions/AdvancedSearch
 	url = https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/AntiSpoof"]
 	path = html/extensions/AntiSpoof
 	url = https://github.com/wikimedia/mediawiki-extensions-AntiSpoof.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/CategoryTree"]
 	path = html/extensions/CategoryTree
 	url = https://github.com/wikimedia/mediawiki-extensions-CategoryTree.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/CheckUser"]
 	path = html/extensions/CheckUser
 	url = https://github.com/wikimedia/mediawiki-extensions-CheckUser.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Cite"]
 	path = html/extensions/Cite
 	url = https://github.com/wikimedia/mediawiki-extensions-Cite.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/CirrusSearch"]
 	path = html/extensions/CirrusSearch
 	url = https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/CodeEditor"]
 	path = html/extensions/CodeEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-CodeEditor.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/CodeMirror"]
 	path = html/extensions/CodeMirror
 	url = https://github.com/wikimedia/mediawiki-extensions-CodeMirror.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/ConfirmEdit"]
 	path = html/extensions/ConfirmEdit
 	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Details"]
 	path = html/extensions/Details
 	url = https://github.com/chariz/mediawiki-extensions-Details.git
 [submodule "html/extensions/Disambiguator"]
 	path = html/extensions/Disambiguator
 	url = https://github.com/wikimedia/mediawiki-extensions-Disambiguator.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/DiscordRCFeed"]
 	path = html/extensions/DiscordRCFeed
 	url = https://github.com/wikimedia/mediawiki-extensions-DiscordRCFeed.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/DiscussionTools"]
 	path = html/extensions/DiscussionTools
 	url = https://github.com/wikimedia/mediawiki-extensions-DiscussionTools.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Echo"]
 	path = html/extensions/Echo
 	url = https://github.com/wikimedia/mediawiki-extensions-Echo.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Elastica"]
 	path = html/extensions/Elastica
 	url = https://github.com/wikimedia/mediawiki-extensions-Elastica.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Gadgets"]
 	path = html/extensions/Gadgets
 	url = https://github.com/wikimedia/mediawiki-extensions-Gadgets.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/InputBox"]
 	path = html/extensions/InputBox
 	url = https://github.com/wikimedia/mediawiki-extensions-InputBox.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Interwiki"]
 	path = html/extensions/Interwiki
 	url = https://github.com/wikimedia/mediawiki-extensions-Interwiki.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Linter"]
 	path = html/extensions/Linter
 	url = https://github.com/wikimedia/mediawiki-extensions-Linter.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/LoginNotify"]
 	path = html/extensions/LoginNotify
 	url = https://github.com/wikimedia/mediawiki-extensions-LoginNotify.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/MediaWikiAuth"]
 	path = html/extensions/MediaWikiAuth
 	url = https://github.com/SkizNet/mediawiki-MediaWikiAuth.git
 [submodule "html/extensions/MultimediaViewer"]
 	path = html/extensions/MultimediaViewer
 	url = https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/OATHAuth"]
 	path = html/extensions/OATHAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-OATHAuth.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/OAuth"]
 	path = html/extensions/OAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-OAuth.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/PageImages"]
 	path = html/extensions/PageImages
 	url = https://github.com/wikimedia/mediawiki-extensions-PageImages.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/ParserFunctions"]
 	path = html/extensions/ParserFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-ParserFunctions.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/ParserMigration"]
 	path = html/extensions/ParserMigration
 	url = https://github.com/wikimedia/mediawiki-extensions-ParserMigration.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Popups"]
 	path = html/extensions/Popups
 	url = https://github.com/wikimedia/mediawiki-extensions-Popups.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/RelatedArticles"]
 	path = html/extensions/RelatedArticles
 	url = https://github.com/theapplewiki/mediawiki-extensions-RelatedArticles.git
@@ -125,19 +125,19 @@
 [submodule "html/extensions/Renameuser"]
 	path = html/extensions/Renameuser
 	url = https://github.com/wikimedia/mediawiki-extensions-Renameuser.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/ReplaceText"]
 	path = html/extensions/ReplaceText
 	url = https://github.com/wikimedia/mediawiki-extensions-ReplaceText.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/RevisionSlider"]
 	path = html/extensions/RevisionSlider
 	url = https://github.com/wikimedia/mediawiki-extensions-RevisionSlider.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Scribunto"]
 	path = html/extensions/Scribunto
 	url = https://github.com/wikimedia/mediawiki-extensions-Scribunto.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/SemanticMediaWiki"]
 	path = html/extensions/SemanticMediaWiki
 	url = https://github.com/SemanticMediaWiki/SemanticMediaWiki.git
@@ -147,53 +147,53 @@
 [submodule "html/extensions/SendGrid"]
 	path = html/extensions/SendGrid
 	url = https://github.com/wikimedia/mediawiki-extensions-SendGrid.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/SpamBlacklist"]
 	path = html/extensions/SpamBlacklist
 	url = https://github.com/wikimedia/mediawiki-extensions-SpamBlacklist.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/SyntaxHighlight_GeSHi"]
 	path = html/extensions/SyntaxHighlight_GeSHi
 	url = https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/TabberNeue"]
 	path = html/extensions/TabberNeue
 	url = https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue.git
 [submodule "html/extensions/TemplateData"]
 	path = html/extensions/TemplateData
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateData.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/TemplateStyles"]
 	path = html/extensions/TemplateStyles
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateStyles.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/TemplateStylesExtender"]
 	path = html/extensions/TemplateStylesExtender
 	url = https://github.com/octfx/mediawiki-extensions-TemplateStylesExtender.git
 [submodule "html/extensions/TemplateWizard"]
 	path = html/extensions/TemplateWizard
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/TextExtracts"]
 	path = html/extensions/TextExtracts
 	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/Thanks"]
 	path = html/extensions/Thanks
 	url = https://github.com/wikimedia/mediawiki-extensions-Thanks.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/VisualEditor"]
 	path = html/extensions/VisualEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-VisualEditor.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/WikiEditor"]
 	path = html/extensions/WikiEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiEditor.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/WikiSEO"]
 	path = html/extensions/WikiSEO
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiSEO.git
-	branch = REL1_41
+	branch = REL1_43
 [submodule "html/extensions/MultiPurge"]
 	path = html/extensions/MultiPurge
 	url = https://github.com/octfx/mediawiki-extensions-MultiPurge.git

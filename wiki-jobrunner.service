@@ -4,8 +4,8 @@ After=network.target
 [Service]
 Type=simple
 
-User=jobrunner
-Group=jobrunner
+User=wiki
+Group=wiki
 
 WorkingDirectory=/srv/wiki
 ExecStart=/usr/bin/php jobrunner/redisJobRunnerService --config-file=jobrunner.json

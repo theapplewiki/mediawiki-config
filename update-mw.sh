@@ -1,8 +1,17 @@
 #!/bin/bash
 set -e
 
-docker compose build --pull --no-cache
+source .env
+cd "$(dirname "$0")"
+
 docker compose down
+
+cd mediawiki
+git pull origin $MW_GIT_REF
+git submodule update --init --recursive
+cd ..
+
+# docker compose build --pull --no-cache
 docker compose up -d
 
 ./update-exts.sh

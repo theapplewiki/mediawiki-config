@@ -11,6 +11,7 @@ services:
       - database
       - redis
     volumes:
+      - './mediawiki:/var/www/html'
       - './LocalSettings.php:/var/www/html/LocalSettings.php'
       - './html/composer.local.json:/var/www/html/composer.local.json'
       - './html/composer.lock:/var/www/html/composer.lock'
@@ -29,10 +30,10 @@ services:
       WG_SENDGRID_API_KEY: '${WG_SENDGRID_API_KEY}'
       WG_HCAPTCHA_SITE_KEY: '${WG_HCAPTCHA_SITE_KEY}'
       WG_HCAPTCHA_SECRET_KEY: '${WG_HCAPTCHA_SECRET_KEY}'
-      WG_DISCORD_WEBHOOK_APPLEWIKI: '${WG_DISCORD_WEBHOOK_APPLEWIKI}'
-      WG_DISCORD_WEBHOOK_HACKDIFFERENT: '${WG_DISCORD_WEBHOOK_HACKDIFFERENT}'
-      WG_CLOUDFLARE_ZONE: '${WG_CLOUDFLARE_ZONE}'
-      WG_CLOUDFLARE_TOKEN: '${WG_CLOUDFLARE_TOKEN}'
+      WG_DISCORD_WEBHOOK_APPLEWIKI: '${WG_DISCORD_WEBHOOK_APPLEWIKI:-}'
+      WG_DISCORD_WEBHOOK_HACKDIFFERENT: '${WG_DISCORD_WEBHOOK_HACKDIFFERENT:-}'
+      WG_CLOUDFLARE_ZONE: '${WG_CLOUDFLARE_ZONE:-}'
+      WG_CLOUDFLARE_TOKEN: '${WG_CLOUDFLARE_TOKEN:-}'
 
   database:
     image: mariadb
