@@ -183,6 +183,9 @@
 	path = html/extensions/VisualEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-VisualEditor.git
 	branch = REL1_43
+[submodule "html/extensions/WantedKeys"]
+	path = html/extensions/WantedKeys
+	url = https://github.com/theapplewiki/mediawiki-extensions-WantedKeys.git
 [submodule "html/extensions/WikiEditor"]
 	path = html/extensions/WikiEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiEditor.git
