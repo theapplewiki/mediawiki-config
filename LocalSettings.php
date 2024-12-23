@@ -43,58 +43,58 @@ define('IS_LEGACY', @$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http' || @$_GET['__l
 
 
 switch ($wikiID) {
-	case 'applewiki':
-		$hostname = 'theapplewiki.com';
-		$wgServer = 'https://theapplewiki.com';
-		$wgSitename = 'The Apple Wiki';
-		$wgMetaNamespace = 'The_Apple_Wiki';
-		$wgCitizenThemeColor = '#585858';
-		$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
-		$wgLogos = [
-			'1x' => $wgAppleTouchIcon,
-			'svg' => "$wgResourceBasePath/resources/$wikiID/logo-square.svg",
-			'wordmark' => [
-				'src' => "$wgResourceBasePath/resources/$wikiID/logo-wordmark.svg",
-				'width' => 135,
-				'height' => 23
-			],
-			'icon' => "$wgResourceBasePath/resources/$wikiID/logo-glyph.svg",
-		];
-		break;
+case 'applewiki':
+	$hostname = 'theapplewiki.com';
+	$wgServer = 'https://theapplewiki.com';
+	$wgSitename = 'The Apple Wiki';
+	$wgMetaNamespace = 'The_Apple_Wiki';
+	$wgCitizenThemeColor = '#585858';
+	$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
+	$wgLogos = [
+		'1x' => $wgAppleTouchIcon,
+		'svg' => "$wgResourceBasePath/resources/$wikiID/logo-square.svg",
+		'wordmark' => [
+			'src' => "$wgResourceBasePath/resources/$wikiID/logo-wordmark.svg",
+			'width' => 135,
+			'height' => 23
+		],
+		'icon' => "$wgResourceBasePath/resources/$wikiID/logo-glyph.svg",
+	];
+	break;
 
-	case 'testwiki':
-		$hostname = 'applewiki.test';
-		$wgServer = 'http://applewiki.test';
-		$wgSitename = 'The Apple Wiki';
-		$wgMetaNamespace = 'The_Apple_Wiki';
-		$wgCitizenThemeColor = '#585858';
-		$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
-		$wgLogos = [
-			'1x' => $wgAppleTouchIcon,
-			'svg' => "$wgResourceBasePath/resources/applewiki/logo-square.svg",
-			'wordmark' => [
-				'src' => "$wgResourceBasePath/resources/applewiki/logo-wordmark.svg",
-				'width' => 135,
-				'height' => 23
-			],
-			'icon' => "$wgResourceBasePath/resources/applewiki/logo-glyph.svg",
-		];
-		break;
+case 'testwiki':
+	$hostname = 'applewiki.test';
+	$wgServer = 'http://applewiki.test';
+	$wgSitename = 'The Apple Wiki';
+	$wgMetaNamespace = 'The_Apple_Wiki';
+	$wgCitizenThemeColor = '#585858';
+	$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
+	$wgLogos = [
+		'1x' => $wgAppleTouchIcon,
+		'svg' => "$wgResourceBasePath/resources/applewiki/logo-square.svg",
+		'wordmark' => [
+			'src' => "$wgResourceBasePath/resources/applewiki/logo-wordmark.svg",
+			'width' => 135,
+			'height' => 23
+		],
+		'icon' => "$wgResourceBasePath/resources/applewiki/logo-glyph.svg",
+	];
+	break;
 
-	case 'kirbwiki':
-		$hostname = 'wiki.kirb.me';
-		$wgServer = '//wiki.kirb.me';
-		$wgCanonicalServer = 'https://wiki.kirb.me';
-		$wgSitename = 'kirbwiki';
-		$wgMetaNamespace = 'kirbwiki';
-		$wgCitizenThemeColor = '#fd7423';
-		$wgAppleTouchIcon = "$wgResourceBasePath/resources/$wikiID/logo-big.jpg";
-		$wgLogos = [
-			'1x' => "$wgResourceBasePath/resources/$wikiID/logo.jpg",
-			'2x' => $wgAppleTouchIcon,
-			'icon' => $wgAppleTouchIcon
-		];
-		break;
+case 'kirbwiki':
+	$hostname = 'wiki.kirb.me';
+	$wgServer = '//wiki.kirb.me';
+	$wgCanonicalServer = 'https://wiki.kirb.me';
+	$wgSitename = 'kirbwiki';
+	$wgMetaNamespace = 'kirbwiki';
+	$wgCitizenThemeColor = '#fd7423';
+	$wgAppleTouchIcon = "$wgResourceBasePath/resources/$wikiID/logo-big.jpg";
+	$wgLogos = [
+		'1x' => "$wgResourceBasePath/resources/$wikiID/logo.jpg",
+		'2x' => $wgAppleTouchIcon,
+		'icon' => $wgAppleTouchIcon
+	];
+	break;
 }
 
 // Paths
@@ -110,7 +110,7 @@ $wgFileCacheDirectory = "$IP/cache";
 
 // Email
 // UPO means: this is also a user preference option
-$wgEnableEmail         = true;
+$wgEnableEmail         = $wikiID != 'testwiki';
 $wgEnableUserEmail     = true; # UPO
 $wgAllowHTMLEmail      = true;
 
@@ -190,6 +190,9 @@ $wgPingback = false;
 
 // Fix double redirects after a move
 $wgFixDoubleRedirects = true;
+
+// Show protection indicators
+$wgEnableProtectionIndicators = true;
 
 // Site language and timezone
 $wgLanguageCode  = 'en';
@@ -353,6 +356,7 @@ $wgParsoidSettings = [
 ];
 
 $wgParserEnableLegacyMediaDOM = PHP_SAPI != 'cli' && !IS_LEGACY;
+$wgParserEnableLegacyHeadingDOM = PHP_SAPI != 'cli' && !IS_LEGACY;
 
 // Reverse proxy
 $wgUseCdn            = true;
@@ -367,7 +371,7 @@ $wgEnableCanonicalServerLink = true;
 
 // Cookies
 $wgSecureLogin       = true;
-$wgCookieSecure      = true;
+$wgCookieSecure      = $wikiID != 'testwiki';
 $wgCookieSameSite    = 'Lax';
 
 // Security headers
@@ -721,17 +725,6 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	};
 }
 
-// Hack to fix MultiPurge not using absolute urls for images
-// https://github.com/octfx/mediawiki-extensions-MultiPurge/issues/4
-$wgHooks['MultiPurgeOnPurgeUrls'][] = function(&$urls) {
-	global $wgServer;
-	for ($i = 0; $i < count($urls); $i++) {
-		if ($urls[$i][0] == '/') {
-			$urls[$i] = $wgServer . $urls[$i];
-		}
-	}
-};
-
 // Footer credits
 $wgMaxCredits = 2;
 
@@ -743,12 +736,8 @@ $wgGitRepositoryViewers['https://github.com/(.*?)(.git)?'] = 'https://github.com
 
 // Edit Recovery feature flag - subject to change after 1.41
 // https://www.mediawiki.org/wiki/Manual:Edit_Recovery
-// TODO: Users didn’t like this on 1.41 because it lacks the ability to discard previous changes,
-// re-enable with 1.42
-if ($wikiID != 'applewiki') {
-	$wgEnableEditRecovery = true;
-	$wgDefaultUserOptions['editrecovery'] = 1;
-}
+$wgEnableEditRecovery = true;
+$wgDefaultUserOptions['editrecovery'] = 1;
 
 // CirrusSearch
 $wgSearchType = 'CirrusSearch';
@@ -777,3 +766,14 @@ $wgMultiPurgeStaticPurges = [
 	'Startup Script' => 'load.php?lang=en&modules=startup&only=scripts&raw=1&skin=citizen',
 	'Site Styles' => 'load.php?lang=en&modules=site.styles&only=styles&skin=citizen'
 ];
+
+// Hack to fix MultiPurge not using absolute urls for images
+// https://github.com/octfx/mediawiki-extensions-MultiPurge/issues/4
+$wgHooks['MultiPurgeOnPurgeUrls'][] = function(&$urls) {
+	global $wgServer;
+	for ($i = 0; $i < count($urls); $i++) {
+		if ($urls[$i][0] == '/') {
+			$urls[$i] = $wgServer . $urls[$i];
+		}
+	}
+};
