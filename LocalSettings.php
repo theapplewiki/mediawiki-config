@@ -277,59 +277,63 @@ $wgNamespaceProtection[NS_MODULE] = ['edittemplate'];
 
 // Extensions
 wfLoadExtension('Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json");
-wfLoadExtension('AbuseFilter');
-wfLoadExtension('AdvancedSearch');
-wfLoadExtension('AntiSpoof');
-wfLoadExtension('CategoryTree');
-wfLoadExtension('CheckUser');
-wfLoadExtension('CirrusSearch');
-wfLoadExtension('Cite');
-wfLoadExtension('CodeEditor');
-wfLoadExtension('CodeMirror');
-wfLoadExtension('ConfirmEdit');
-wfLoadExtension('ConfirmEdit/hCaptcha');
-wfLoadExtension('Details');
-wfLoadExtension('Disambiguator');
-wfLoadExtension('DiscordRCFeed');
-wfLoadExtension('DiscussionTools');
-wfLoadExtension('Echo');
-wfLoadExtension('Elastica');
-wfLoadExtension('Gadgets');
-wfLoadExtension('InputBox');
-wfLoadExtension('Interwiki');
-wfLoadExtension('Linter');
-wfLoadExtension('LoginNotify');
-wfLoadExtension('MultimediaViewer');
-wfLoadExtension('MultiPurge');
-wfLoadExtension('OATHAuth');
-wfLoadExtension('OAuth');
-wfLoadExtension('PageImages');
-wfLoadExtension('ParserFunctions');
-wfLoadExtension('ParserMigration');
-wfLoadExtension('Popups');
-wfLoadExtension('RelatedArticles');
-wfLoadExtension('Renameuser');
-wfLoadExtension('ReplaceText');
-wfLoadExtension('RevisionSlider');
-wfLoadExtension('Scribunto');
-wfLoadExtension('SendGrid');
-wfLoadExtension('SpamBlacklist');
-wfLoadExtension('SyntaxHighlight_GeSHi');
-wfLoadExtension('TabberNeue');
-wfLoadExtension('TemplateData');
-wfLoadExtension('TemplateStyles');
-wfLoadExtension('TemplateStylesExtender');
-wfLoadExtension('TemplateWizard');
-wfLoadExtension('TextExtracts');
-wfLoadExtension('Thanks');
-wfLoadExtension('VisualEditor');
-wfLoadExtension('WikiEditor');
-wfLoadExtension('WikiSEO');
+wfLoadExtensions([
+	'AbuseFilter',
+	'AdvancedSearch',
+	'AntiSpoof',
+	'CategoryTree',
+	'CheckUser',
+	'CirrusSearch',
+	'Cite',
+	'CodeEditor',
+	'CodeMirror',
+	'ConfirmEdit',
+	'ConfirmEdit/hCaptcha',
+	'Details',
+	'Disambiguator',
+	'DiscordRCFeed',
+	'DiscussionTools',
+	'Echo',
+	'Elastica',
+	'Gadgets',
+	'InputBox',
+	'Interwiki',
+	'Linter',
+	'LoginNotify',
+	'MultimediaViewer',
+	'MultiPurge',
+	'OATHAuth',
+	'OAuth',
+	'PageImages',
+	'ParserFunctions',
+	'ParserMigration',
+	'Popups',
+	'RelatedArticles',
+	'Renameuser',
+	'ReplaceText',
+	'RevisionSlider',
+	'Scribunto',
+	'SendGrid',
+	'SpamBlacklist',
+	'SyntaxHighlight_GeSHi',
+	'TabberNeue',
+	'TemplateData',
+	'TemplateStyles',
+	'TemplateStylesExtender',
+	'TemplateWizard',
+	'TextExtracts',
+	'Thanks',
+	'VisualEditor',
+	'WikiEditor',
+	'WikiSEO',
+]);
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
-	wfLoadExtension('SemanticMediaWiki');
-	wfLoadExtension('SemanticResultFormats');
-	wfLoadExtension('SemanticScribunto');
+	wfLoadExtension([
+		'SemanticMediaWiki',
+		'SemanticResultFormats',
+		'SemanticScribunto'
+	]);
 
 	if (file_exists("$IP/extensions/WantedKeys")) {
 		wfLoadExtension('WantedKeys');
@@ -337,10 +341,12 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 }
 
 // Skins
-wfLoadSkin('MinervaNeue');
-wfLoadSkin('MonoBook');
-wfLoadSkin('Vector');
-wfLoadSkin('Citizen');
+wfLoadSkins([
+	'Citizen',
+	'MinervaNeue',
+	'MonoBook',
+	'Vector',
+]);
 
 $legacySkin = file_exists("$IP/skins/MonoBookLegacy") ? 'MonoBookLegacy' : 'Vector';
 if ($legacySkin == 'MonoBookLegacy') {
