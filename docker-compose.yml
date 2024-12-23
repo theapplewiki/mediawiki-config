@@ -12,6 +12,7 @@ services:
       - redis
     volumes:
       - './mediawiki:/var/www/html'
+      - './init.php:/var/www/init.php'
       - './LocalSettings.php:/var/www/html/LocalSettings.php'
       - './html/composer.local.json:/var/www/html/composer.local.json'
       - './html/composer.lock:/var/www/html/composer.lock'
@@ -24,6 +25,7 @@ services:
       - './php.ini:/usr/local/etc/php/conf.d/zz-wiki.ini'
       - './php-fpm.conf:/usr/local/etc/php-fpm.d/zz-wiki.conf'
     environment:
+      SENTRY_DSN: '${SENTRY_DSN:-}'
       WG_DB_PASSWORD: '${MYSQL_PASSWORD}'
       WG_SECRET_KEY: '${WG_SECRET_KEY}'
       WG_AUTHENTICATION_TOKEN_VERSION: '${WG_AUTHENTICATION_TOKEN_VERSION}'

@@ -1,4 +1,8 @@
 {
+	"require": {
+		"sentry/sentry": "^4.10"
+	},
+
 	"extra": {
 		"merge-plugin": {
 			"include": [

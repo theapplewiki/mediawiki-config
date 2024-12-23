@@ -87,7 +87,7 @@ RUN set -eux; \
 		apt-get clean; \
 		rm -rf /var/lib/apt/lists/*; \
 		\
-		pecl install imagick luasandbox redis; \
+		pecl install excimer imagick luasandbox redis; \
 		docker-php-ext-install -j $(nproc) exif pcntl; \
 		docker-php-ext-enable imagick luasandbox pcntl redis; \
 		rm -rf /tmp/pear
