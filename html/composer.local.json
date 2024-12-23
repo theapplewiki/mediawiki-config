@@ -20,7 +20,6 @@
 				"extensions/InputBox/composer.json",
 				"extensions/Interwiki/composer.json",
 				"extensions/MultimediaViewer/composer.json",
-				"extensions/Nuke/composer.json",
 				"extensions/OATHAuth/composer.json",
 				"extensions/PageImages/composer.json",
 				"extensions/ParserFunctions/composer.json",
@@ -38,7 +37,6 @@
 				"extensions/TemplateStyles/composer.json",
 				"extensions/TemplateStylesExtender/composer.json",
 				"extensions/TextExtracts/composer.json",
-				"extensions/TitleKey/composer.json",
 				"extensions/VisualEditor/composer.json",
 				"extensions/WikiEditor/composer.json"
 			]
