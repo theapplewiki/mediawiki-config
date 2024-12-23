@@ -1,6 +1,6 @@
 .env
 
-/mediawiki/*
+/mediawiki/
 /cache/*
 /db/*
 /redis/*
