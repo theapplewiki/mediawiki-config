@@ -327,7 +327,6 @@ wfLoadExtension('WikiEditor');
 wfLoadExtension('WikiSEO');
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
-	wfLoadExtension('MediaWikiAuth');
 	wfLoadExtension('SemanticMediaWiki');
 	wfLoadExtension('SemanticScribunto');
 
@@ -608,10 +607,6 @@ if ($wikiID == 'applewiki') {
 		'omit_bots' => true,
 		'omit_log_types' => ['block', 'newusers', 'patrol']
 	];
-
-	// MediaWikiAuth
-	$wgMediaWikiAuthApiUrl = 'https://www.theiphonewiki.com/w/api.php';
-	$wgMediaWikiAuthDisableAccountCreation = true;
 }
 
 // Article count behavior ({{NUMBEROFARTICLES}} etc)

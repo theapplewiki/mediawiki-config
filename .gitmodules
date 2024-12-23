@@ -87,9 +87,6 @@
 	path = html/extensions/LoginNotify
 	url = https://github.com/wikimedia/mediawiki-extensions-LoginNotify.git
 	branch = REL1_43
-[submodule "html/extensions/MediaWikiAuth"]
-	path = html/extensions/MediaWikiAuth
-	url = https://github.com/SkizNet/mediawiki-MediaWikiAuth.git
 [submodule "html/extensions/MultimediaViewer"]
 	path = html/extensions/MultimediaViewer
 	url = https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer.git
