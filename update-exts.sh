@@ -24,11 +24,12 @@ docker compose exec mediawiki \
 docker compose exec mediawiki \
 	composer install --no-dev --optimize-autoloader
 
-# rm -rf cache/*
-
 for i in $WIKIS; do
 	docker compose exec mediawiki \
 		maintenance/run --wiki $i update --quick
 	docker compose exec mediawiki \
 		maintenance/run --wiki $i update --quick
 done
+
+docker compose restart mediawiki
+rm -rf cache/*

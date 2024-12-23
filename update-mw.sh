@@ -11,7 +11,7 @@ git pull origin $MW_GIT_REF
 git submodule update --init --recursive
 cd ..
 
-# docker compose build --pull --no-cache
+docker compose build --pull --no-cache
 docker compose up -d
 
 ./update-exts.sh
