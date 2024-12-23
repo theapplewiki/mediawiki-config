@@ -8,11 +8,11 @@ for i in {extensions,skins}/*; do
 	[[ -f $i/.git ]] || continue
 	printf '\n\n%s\n\n' "$i"
 	cd $i
-	if [[ $(git rev-parse --abbrev-ref HEAD) =~ REL* ]]; then
-		git pull origin $MW_GIT_REF || :
-	else
-		git pull origin $(git rev-parse --abbrev-ref HEAD) || :
+	rev=$(git rev-parse --abbrev-ref HEAD)
+	if [[ $rev =~ REL* ]]; then
+		rev=$MW_GIT_REF
 	fi
+	git pull origin $rev || :
 	git submodule update --init --recursive || :
 	cd -
 done

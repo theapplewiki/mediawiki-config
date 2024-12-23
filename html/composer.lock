@@ -579,6 +579,94 @@
             "time": "2022-10-21T13:57:56+00:00"
         },
         {
+            "name": "data-values/geo",
+            "version": "4.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataValues/Geo.git",
+                "reference": "dfad9f2281bc7f3a5c59e054a33faeb9e7f9dba2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataValues/Geo/zipball/dfad9f2281bc7f3a5c59e054a33faeb9e7f9dba2",
+                "reference": "dfad9f2281bc7f3a5c59e054a33faeb9e7f9dba2",
+                "shasum": ""
+            },
+            "require": {
+                "data-values/data-values": "^3.0|^2.0|^1.0|~0.1",
+                "data-values/interfaces": "^1.0.0|^0.2.0",
+                "php": ">=8.0",
+                "symfony/polyfill-php80": "^1.18.1"
+            },
+            "require-dev": {
+                "maglnet/composer-require-checker": "^3.0|^2.0",
+                "mediawiki/mediawiki-codesniffer": "^45",
+                "ockcyp/covers-validator": "^1.3.3",
+                "phpmd/phpmd": "^2.9.1",
+                "phpstan/phpstan": "^0.12.68 || ^1.0.0",
+                "phpunit/phpunit": "^9.4.1",
+                "vimeo/psalm": "^4.4.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DataValues\\Geo\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen De Dauw",
+                    "email": "jeroendedauw@gmail.com",
+                    "homepage": "http://jeroendedauw.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "The Wikidata team",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Geographical value objects, parsers and formatters",
+            "homepage": "https://github.com/DataValues/Geo",
+            "keywords": [
+                "Degrees",
+                "Minutes",
+                "coordinate",
+                "coordinates",
+                "datavalues",
+                "dms",
+                "formatters",
+                "geo",
+                "geographical",
+                "latitude",
+                "latlong",
+                "longitude",
+                "parsers",
+                "seconds",
+                "wikidata"
+            ],
+            "support": {
+                "docs": "https://github.com/DataValues/Geo/#usage",
+                "issues": "https://github.com/DataValues/Geo/issues",
+                "source": "https://github.com/DataValues/Geo/tree/4.5.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/JeroenDeDauw",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-12-10T13:13:38+00:00"
+        },
+        {
             "name": "data-values/interfaces",
             "version": "1.2.0",
             "source": {
@@ -1912,6 +2000,46 @@
                 }
             ],
             "time": "2024-04-12T20:52:51+00:00"
+        },
+        {
+            "name": "nicmart/tree",
+            "version": "v0.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicmart/Tree.git",
+                "reference": "0616b54bb49938e1a816141d7943db48ebf76938"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicmart/Tree/zipball/0616b54bb49938e1a816141d7943db48ebf76938",
+                "reference": "0616b54bb49938e1a816141d7943db48ebf76938",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tree\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolò Martini",
+                    "email": "nicmartnic@gmail.com"
+                }
+            ],
+            "description": "A basic but flexible php tree data structure and a fluent tree builder implementation.",
+            "support": {
+                "issues": "https://github.com/nicmart/Tree/issues",
+                "source": "https://github.com/nicmart/Tree/tree/master"
+            },
+            "time": "2015-08-20T20:50:35+00:00"
         },
         {
             "name": "nyholm/dsn",

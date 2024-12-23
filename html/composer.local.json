@@ -29,6 +29,7 @@
 				"extensions/ReplaceText/composer.json",
 				"extensions/Scribunto/composer.json",
 				"extensions/SemanticMediaWiki/composer.json",
+				"extensions/SemanticResultFormats/composer.json",
 				"extensions/SemanticScribunto/composer.json",
 				"extensions/SendGrid/composer.json",
 				"extensions/SpamBlacklist/composer.json",

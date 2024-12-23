@@ -328,6 +328,7 @@ wfLoadExtension('WikiSEO');
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	wfLoadExtension('SemanticMediaWiki');
+	wfLoadExtension('SemanticResultFormats');
 	wfLoadExtension('SemanticScribunto');
 
 	if (file_exists("$IP/extensions/WantedKeys")) {

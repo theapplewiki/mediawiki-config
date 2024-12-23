@@ -91,6 +91,9 @@
 	path = html/extensions/MultimediaViewer
 	url = https://github.com/wikimedia/mediawiki-extensions-MultimediaViewer.git
 	branch = REL1_43
+[submodule "html/extensions/MultiPurge"]
+	path = html/extensions/MultiPurge
+	url = https://github.com/octfx/mediawiki-extensions-MultiPurge.git
 [submodule "html/extensions/OATHAuth"]
 	path = html/extensions/OATHAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-OATHAuth.git
@@ -138,6 +141,9 @@
 [submodule "html/extensions/SemanticMediaWiki"]
 	path = html/extensions/SemanticMediaWiki
 	url = https://github.com/SemanticMediaWiki/SemanticMediaWiki.git
+[submodule "html/extensions/SemanticResultFormats"]
+	path = html/extensions/SemanticResultFormats
+	url = https://github.com/SemanticMediaWiki/SemanticResultFormats.git
 [submodule "html/extensions/SemanticScribunto"]
 	path = html/extensions/SemanticScribunto
 	url = https://github.com/SemanticMediaWiki/SemanticScribunto.git
@@ -194,6 +200,3 @@
 	path = html/extensions/WikiSEO
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiSEO.git
 	branch = REL1_43
-[submodule "html/extensions/MultiPurge"]
-	path = html/extensions/MultiPurge
-	url = https://github.com/octfx/mediawiki-extensions-MultiPurge.git
