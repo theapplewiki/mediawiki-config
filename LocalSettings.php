@@ -293,7 +293,7 @@ wfLoadExtensions([
 	'ConfirmEdit/hCaptcha',
 	'Details',
 	'Disambiguator',
-	'DiscordRCFeed',
+	// 'DiscordRCFeed',
 	'DiscussionTools',
 	'Echo',
 	'Elastica',
@@ -609,17 +609,22 @@ $wgAccountCreationThrottle = [
 $wgPopupsReferencePreviewsBetaFeature = false;
 
 // DiscordRCFeed
-if ($wikiID == 'applewiki') {
-	$wgRCFeeds['discord-applewiki'] = [
-		'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
-		'omit_bots' => true
-	];
-	$wgRCFeeds['discord-hackdifferent'] = [
-		'url' => $_ENV['WG_DISCORD_WEBHOOK_HACKDIFFERENT'],
-		'omit_bots' => true,
-		'omit_log_types' => ['block', 'newusers', 'patrol']
-	];
-}
+// if ($wikiID == 'applewiki') {
+// 	$wgRCFeeds['discord-applewiki'] = [
+// 		'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
+// 		'omit_bots' => true
+// 	];
+// 	$wgRCFeeds['discord-hackdifferent'] = [
+// 		'url' => $_ENV['WG_DISCORD_WEBHOOK_HACKDIFFERENT'],
+// 		'omit_bots' => true,
+// 		'omit_log_types' => ['block', 'newusers', 'patrol']
+// 	];
+// } else if ($wikiID == 'testwiki') {
+// 	$wgRCFeeds['discord-testwiki'] = [
+// 		'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
+// 		'omit_bots' => false
+// 	];
+// }
 
 // Article count behavior ({{NUMBEROFARTICLES}} etc)
 $wgArticleCountMethod = 'any';
