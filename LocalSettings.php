@@ -5,7 +5,9 @@ if (!defined('MEDIAWIKI')) {
 
 
 // Never display errors to the user. We can find them in php-fpm logs still.
-error_reporting(PHP_SAPI == 'cli' ? E_ALL : 0);
+// TODO: Change back when warning in CLI is fixed
+// error_reporting(PHP_SAPI == 'cli' ? E_ALL : 0);
+error_reporting(PHP_SAPI == 'cli' ? E_ALL & ~E_WARNING : 0);
 // error_reporting(E_ALL);
 
 
@@ -400,7 +402,7 @@ $wgHCaptchaSecretKey    = $_ENV['WG_HCAPTCHA_SECRET_KEY'];
 $wgHCaptchaSendRemoteIP = true;
 
 // DNS denylist
-$wgEnableDnsBlacklist = true;
+$wgEnableDnsBlacklist = $wikiID != 'testwiki';
 $wgDnsBlacklistUrls   = ['xbl.spamhaus.org.', 'spam.dnsbl.sorbs.net.', 'rbl.dnsbl.im.', 'noptr.spamrats.com.', 'all.s5h.net.', 'z.mailspike.net.'];
 $wgSuspiciousIpExpiry = 24 * 60 * 60; // 1 day
 
@@ -725,7 +727,7 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 
 	// Exclude key pages from Special:WantedPages
 	$wgHooks['WantedPages::getQueryInfo'][] = function(&$wantedPages, &$query) {
-		$query['conds'][] = 'pl_namespace != ' . NS_KEYS;
+		$query['conds'][] = 'lt_namespace != ' . NS_KEYS;
 	};
 
 	// Footer links
