@@ -9,8 +9,8 @@ for i in $WIKIS; do
 	nice docker compose exec mediawiki \
 		maintenance/run --wiki $i generateSitemap --quiet --fspath=/var/www/html/sitemap --compress=no --urlpath=/sitemap
 
-	for i in html/sitemap/*.xml; do
-		nice -n 19 ionice -c 3 gzip -9 < "$i" > "$i".gz
+	for j in html/sitemap/*.xml; do
+		nice -n 19 ionice -c 3 gzip -9 < "$j" > "$j".gz
 	done
 
 	# Process Echo notifications
