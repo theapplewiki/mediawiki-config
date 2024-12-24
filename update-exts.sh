@@ -2,27 +2,28 @@
 set -e
 
 source .env
-cd "$(dirname "$0")"/html
+cd "$(dirname "$0")"
+git submodule init
 
-for i in {extensions,skins}/*; do
-	[[ -f $i/.git ]] || continue
-	printf '\n\n%s\n\n' "$i"
+for i in html/{extensions,skins}/*; do
+	echo "$i"
+	if [[ ! -e $i/.git ]]; then
+		echo "Not a git repo?"
+		continue
+	fi
+
 	cd $i
 	rev=$(git rev-parse --abbrev-ref HEAD)
 	if [[ $rev =~ REL* ]]; then
 		rev=$MW_GIT_REF
 	fi
-	git pull origin $rev || :
+	git pull --ff-only origin $rev || :
 	git submodule update --init --recursive || :
-	cd -
+	cd ../../..
 done
-
-cd ..
 
 docker compose exec mediawiki \
 	composer update --no-dev --optimize-autoloader
-docker compose exec mediawiki \
-	composer install --no-dev --optimize-autoloader
 
 for i in $WIKIS; do
 	docker compose exec mediawiki \
