@@ -38,7 +38,7 @@ if (defined('MW_DB')) {
 
 
 // Legacy browsers: Mostly defined as those that don’t support CSS Grid.
-// Accessed over HTTP, or Cloudflare rewrite rule passes ?__is_legacy=1
+// Accessed over HTTP, or Cloudflare rewrite rule passes ?__legacy_browser=1
 define('IS_LEGACY', @$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http' || @$_GET['__legacy_browser'] == '1');
 
 
