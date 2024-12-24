@@ -4,8 +4,6 @@ set -e
 source .env
 cd "$(dirname "$0")"
 
-docker compose down
-
 cd mediawiki
 git pull origin $MW_GIT_REF
 git submodule update --init --recursive
