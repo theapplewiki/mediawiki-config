@@ -49,18 +49,6 @@ services:
     depends_on:
       - mediawiki
 
-  # jobrunner:
-  #   <<: *mw-base
-  #   command: 'php /jobrunner/redisJobRunnerService --config-file=/jobrunner.json'
-  #   depends_on:
-  #     - mediawiki
-
-  # jobchron:
-  #   <<: *mw-base
-  #   command: 'php /jobrunner/redisJobChronService --config-file=/jobrunner.json'
-  #   depends_on:
-  #     - mediawiki
-
   database:
     image: mariadb
     restart: always
