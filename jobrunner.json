@@ -12,11 +12,11 @@
 				"ParsoidCacheUpdateJobOnDependencyChange",
 				"ParsoidCacheUpdateJobOnEdit",
 				"PublishStashedFile",
+				"smw.update",
 				"uploadFromUrl",
 				"webVideoTranscode"
 			],
 			"low-priority": [
-				"htmlCacheUpdate",
 				"refreshLinks"
 			]
 		},
@@ -27,7 +27,8 @@
 				"ParsoidCacheUpdateJobOnDependencyChange",
 				"ParsoidCacheUpdateJobOnEdit",
 				"cirrusSearchLinksUpdate",
-				"cirrusSearchElasticaWrite"
+				"cirrusSearchElasticaWrite",
+				"smw.update"
 			]
 		},
 
