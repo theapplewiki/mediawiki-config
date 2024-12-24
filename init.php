@@ -5,6 +5,10 @@
 		return;
 	}
 
+	if (!file_exists(__DIR__ . '/html/vendor/autoload.php')) {
+		return;
+	}
+
 	require_once __DIR__ . '/html/vendor/autoload.php';
 
 	\Sentry\init([
