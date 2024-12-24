@@ -418,6 +418,8 @@ $wgEnableScaryTranscluding = true;
 
 // Permissions
 
+$star_perms = $wgGroupPermissions['*'];
+
 // Everyone
 $wgGroupPermissions['*'] = [
 	'createaccount' => false,
@@ -430,6 +432,7 @@ if ($wikiID == 'applewiki') {
 }
 
 // Logged in user
+$wgGroupPermissions['user'] += $star_perms;
 $wgGroupPermissions['user']['edit']   = false;
 $wgGroupPermissions['user']['upload'] = false;
 
