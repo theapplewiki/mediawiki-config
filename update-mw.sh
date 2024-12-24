@@ -17,6 +17,7 @@ docker compose up -d
 ./update-exts.sh
 
 rm -rf cache/*
+nginx -s reload
 
 cd jobrunner
 composer update --no-dev --optimize-autoloader --ignore-platform-req=ext-sockets
