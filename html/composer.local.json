@@ -3,6 +3,20 @@
 		"sentry/sentry": "^4.10"
 	},
 
+	"replace": {
+		"mediawiki/semantic-media-wiki": "*"
+	},
+
+	"repositories": [
+		{
+			"type": "path",
+			"url": "extensions/SemanticMediaWiki",
+			"options": {
+				"symlink": true
+			}
+		}
+	],
+
 	"extra": {
 		"merge-plugin": {
 			"include": [

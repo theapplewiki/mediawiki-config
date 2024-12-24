@@ -329,7 +329,7 @@ wfLoadExtensions([
 ]);
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
-	wfLoadExtension([
+	wfLoadExtensions([
 		'SemanticMediaWiki',
 		'SemanticResultFormats',
 		'SemanticScribunto'
