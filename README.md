@@ -38,19 +38,45 @@ Services we use:
 
 Currently, we run on a single server. This seems to manage our traffic perfectly fine.
 
-Major extensions installed:
+Extensions installed, beyond ones in the base MediaWiki install:
 
-* [CirrusSearch](https://www.mediawiki.org/wiki/Extension:CirrusSearch)
-* [Citizen](https://github.com/StarCitizenTools/mediawiki-skins-Citizen)
-* [Gadgets](https://www.mediawiki.org/wiki/Extension:Gadgets)
-* [ParserFunctions](https://www.mediawiki.org/wiki/Extension:ParserFunctions)
-* [RelatedArticles](https://www.mediawiki.org/wiki/Extension:RelatedArticles)
-* [Scribunto](https://www.mediawiki.org/wiki/Extension:Scribunto)
+* Admin
+  * [AntiSpoof](https://www.mediawiki.org/wiki/Extension:AntiSpoof)*
+  * [CheckUser](https://www.mediawiki.org/wiki/Extension:CheckUser)*
+  * [OAuth](https://www.mediawiki.org/wiki/Extension:OAuth)*
+  * [Renameuser](https://www.mediawiki.org/wiki/Extension:Renameuser)
+* Editing
+  * [CodeMirror](https://www.mediawiki.org/wiki/Extension:CodeMirror)*
+  * [TemplateWizard](https://www.mediawiki.org/wiki/Extension:TemplateWizard)*
+* Housekeeping
+  * [Disambiguator](https://www.mediawiki.org/wiki/Extension:Disambiguator)*
+  * [DiscordRCFeed](https://www.mediawiki.org/wiki/Extension:DiscordRCFeed)
+  * [MultiPurge](https://www.mediawiki.org/wiki/Extension:MultiPurge)
+  * [ParserMigration](https://www.mediawiki.org/wiki/Extension:ParserMigration)*
+  * [SendGrid](https://www.mediawiki.org/wiki/Extension:SendGrid)
+  * [WantedKeys](https://github.com/theapplewiki/mediawiki-extensions-WantedKeys)
+  * [WikiSEO](https://www.mediawiki.org/wiki/Extension:WikiSEO)
+* Page rendering
+  * [Details](https://www.mediawiki.org/wiki/Extension:Details)
+  * [Scribunto](https://www.mediawiki.org/wiki/Extension:Scribunto)*
+  * [TabberNeue](https://www.mediawiki.org/wiki/Extension:TabberNeue)
+  * [TemplateStyles](https://www.mediawiki.org/wiki/Extension:TemplateStyles)*
+  * [TemplateStylesExtender](https://www.mediawiki.org/wiki/Extension:TemplateStylesExtender)
+* Search
+  * [AdvancedSearch](https://www.mediawiki.org/wiki/Extension:AdvancedSearch)*
+  * [CirrusSearch](https://www.mediawiki.org/wiki/Extension:CirrusSearch)*
+  * [Elastica](https://www.mediawiki.org/wiki/Extension:Elastica)*
+* Skins
+  * [Citizen](https://github.com/StarCitizenTools/mediawiki-skins-Citizen)
 * [Semantic MediaWiki](https://www.semantic-mediawiki.org/)
-* [TemplateStyles](https://www.mediawiki.org/wiki/Extension:TemplateStyles) and [TemplateStylesExtender](https://www.mediawiki.org/wiki/Extension:TemplateStylesExtender)
-* [VisualEditor](https://www.mediawiki.org/wiki/Extension:VisualEditor)
+  * [Semantic Result Formats](https://www.mediawiki.org/wiki/Extension:Semantic_Result_Formats)
+  * [Semantic Scribunto](https://www.mediawiki.org/wiki/Extension:Semantic_Scribunto)
+* UI
+  * [Popups](https://www.mediawiki.org/wiki/Extension:Popups)*
+  * [RelatedArticles](https://www.mediawiki.org/wiki/Extension:RelatedArticles)*
+  * [RevisionSlider](https://www.mediawiki.org/wiki/Extension:RevisionSlider)*
 
-We also use [MediaWikiAuth](https://www.mediawiki.org/wiki/Extension:MediaWikiAuth) to allow users to migrate an account from [The iPhone Wiki](https://www.theiphonewiki.com/)
+\* [Also used by WMF](https://www.mediawiki.org/wiki/Category:Extensions_used_on_Wikimedia).
 
 We have all extensions and skins cloned into html/extensions/ and html/skins/ via git. This allows them to be updated easily with `./update-exts.sh`.
 
