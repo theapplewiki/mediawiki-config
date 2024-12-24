@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 git submodule init
 
 for i in html/{extensions,skins}/*; do
-	echo "$i"
+	echo -n "$i -> "
 	if [[ ! -e $i/.git ]]; then
 		echo "Not a git repo?"
 		continue
@@ -17,6 +17,7 @@ for i in html/{extensions,skins}/*; do
 	if [[ $rev =~ REL* ]]; then
 		rev=$MW_GIT_REF
 	fi
+	echo $rev
 	git pull --ff-only origin $rev || :
 	git submodule update --init --recursive || :
 	cd ../../..
