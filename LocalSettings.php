@@ -675,6 +675,15 @@ $wgCitizenSearchGateway = 'mwRestApi';
 $wgCitizenSearchDescriptionSource = 'textextracts';
 $wgCitizenMaxSearchResults = 10;
 
+// Vector
+$wgVectorResponsive = true;
+
+// Fully enable dark mode and enable auto mode by default
+$wgVectorNightMode['beta'] = true;
+$wgVectorNightMode['logged_out'] = true;
+$wgVectorNightMode['logged_in'] = true;
+$wgDefaultUserOptions['vector-theme'] = 'os';
+
 // RelatedArticles
 $wgRelatedArticlesFooterAllowedSkins[] = 'citizen';
 $wgRelatedArticlesFooterAllowedNamespaces = [NS_MAIN];
