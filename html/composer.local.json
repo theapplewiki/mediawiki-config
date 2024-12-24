@@ -4,55 +4,15 @@
 	},
 
 	"replace": {
-		"mediawiki/semantic-media-wiki": "*"
+		"mediawiki/semantic-media-wiki": "*",
+		"react/promise": "v2.11.0"
 	},
-
-	"repositories": [
-		{
-			"type": "path",
-			"url": "extensions/SemanticMediaWiki",
-			"options": {
-				"symlink": true
-			}
-		}
-	],
 
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"extensions/AbuseFilter/composer.json",
-				"extensions/AntiSpoof/composer.json",
-				"extensions/CategoryTree/composer.json",
-				"extensions/CheckUser/composer.json",
-				"extensions/CirrusSearch/composer.json",
-				"extensions/Cite/composer.json",
-				"extensions/CodeEditor/composer.json",
-				"extensions/CodeMirror/composer.json",
-				"extensions/ConfirmEdit/composer.json",
-				"extensions/Elastica/composer.json",
-				"extensions/Gadgets/composer.json",
-				"extensions/InputBox/composer.json",
-				"extensions/Interwiki/composer.json",
-				"extensions/MultimediaViewer/composer.json",
-				"extensions/OATHAuth/composer.json",
-				"extensions/PageImages/composer.json",
-				"extensions/ParserFunctions/composer.json",
-				"extensions/Popups/composer.json",
-				"extensions/Renameuser/composer.json",
-				"extensions/ReplaceText/composer.json",
-				"extensions/Scribunto/composer.json",
-				"extensions/SemanticMediaWiki/composer.json",
-				"extensions/SemanticResultFormats/composer.json",
-				"extensions/SemanticScribunto/composer.json",
-				"extensions/SendGrid/composer.json",
-				"extensions/SpamBlacklist/composer.json",
-				"extensions/SyntaxHighlight_GeSHi/composer.json",
-				"extensions/TemplateData/composer.json",
-				"extensions/TemplateStyles/composer.json",
-				"extensions/TemplateStylesExtender/composer.json",
-				"extensions/TextExtracts/composer.json",
-				"extensions/VisualEditor/composer.json",
-				"extensions/WikiEditor/composer.json"
+				"extensions/*/composer.json",
+				"skins/*/composer.json"
 			]
 		}
 	}
