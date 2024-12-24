@@ -12,7 +12,7 @@ git submodule update --init --recursive
 cd ..
 
 docker compose build --pull --no-cache
-docker compose up -d
+docker compose up -d --remove-orphans
 
 ./update-exts.sh
 
