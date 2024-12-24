@@ -19,8 +19,6 @@ docker compose up -d
 rm -rf cache/*
 
 cd jobrunner
-composer update --no-dev --optimize-autoloader
+composer update --no-dev --optimize-autoloader --ignore-platform-req=ext-sockets
+docker compose restart jobrunner
 cd ..
-
-systemctl daemon-reload
-systemctl restart wiki-*.service

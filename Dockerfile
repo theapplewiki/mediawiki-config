@@ -75,21 +75,20 @@ RUN set -eux; \
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-# TODO: Can we remove luasandbox stuff here?
 RUN set -eux; \
 		apt-get update -q; \
 		apt-get install -qy --no-install-recommends \
 			unzip \
-			liblua5.1-0-dev \
 			libmagickwand-dev \
 			libzstd-dev; \
 		apt-get autoremove -qy; \
 		apt-get clean; \
-		rm -rf /var/lib/apt/lists/*; \
-		\
-		pecl install excimer imagick luasandbox redis; \
+		rm -rf /var/lib/apt/lists/*
+
+RUN set -eux; \
+		pecl install excimer imagick redis; \
 		docker-php-ext-install -j $(nproc) exif pcntl; \
-		docker-php-ext-enable imagick luasandbox pcntl redis; \
+		docker-php-ext-enable imagick pcntl redis; \
 		rm -rf /tmp/pear
 
 CMD ["php-fpm"]

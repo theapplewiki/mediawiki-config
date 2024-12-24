@@ -82,7 +82,6 @@ index eebd370..fb24bf1 100644
 
 ## To do
 
-* Move jobrunner to a container
 * Move nginx to a container
 
 ## License

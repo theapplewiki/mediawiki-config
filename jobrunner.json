@@ -75,9 +75,9 @@
 	},
 
 	"redis": {
-		"aggregators": ["127.0.0.1:6379"],
-		"queues": ["127.0.0.1:6379"]
+		"aggregators": ["redis:6379"],
+		"queues": ["redis:6379"]
 	},
 
-	"dispatcher": "/srv/wiki/runjobs.sh --wiki=%(db)x --type=%(type)x --maxtime=%(maxtime)x --memory-limit=%(maxmem)x --result=json"
+	"dispatcher": "/var/www/html/maintenance/run runJobs --wiki=%(db)x --type=%(type)x --maxtime=%(maxtime)x --memory-limit=%(maxmem)x --result=json"
 }

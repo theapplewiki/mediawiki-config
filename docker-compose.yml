@@ -1,41 +1,65 @@
 ---
+x-mw-base: &mw-base
+  build:
+    context: .
+    dockerfile: Dockerfile
+  restart: always
+  links:
+    - database
+    - redis
+  volumes:
+    - './mediawiki:/var/www/html:ro'
+    - './init.php:/var/www/init.php:ro'
+    - './LocalSettings.php:/var/www/html/LocalSettings.php:ro'
+    - './html/composer.local.json:/var/www/html/composer.local.json:ro'
+    - './html/composer.lock:/var/www/html/composer.lock'
+    - './html/skins/Citizen:/var/www/html/skins/Citizen:ro'
+    - './html/extensions:/var/www/html/extensions'
+    - './html/images:/var/www/html/images'
+    - './html/vendor:/var/www/html/vendor'
+    - './html/sitemap:/var/www/html/sitemap'
+    - './cache:/var/www/html/cache'
+    - './php.ini:/usr/local/etc/php/conf.d/zz-wiki.ini:ro'
+    - './php-fpm.conf:/usr/local/etc/php-fpm.d/zz-wiki.conf:ro'
+    - './jobrunner.json:/jobrunner.json:ro'
+    - './jobrunner-run.sh:/jobrunner-run.sh:ro'
+    - './jobrunner:/jobrunner:ro'
+  environment:
+    SENTRY_DSN: '${SENTRY_DSN:-}'
+    WG_DB_PASSWORD: '${MYSQL_PASSWORD}'
+    WG_SECRET_KEY: '${WG_SECRET_KEY}'
+    WG_AUTHENTICATION_TOKEN_VERSION: '${WG_AUTHENTICATION_TOKEN_VERSION}'
+    WG_SENDGRID_API_KEY: '${WG_SENDGRID_API_KEY}'
+    WG_HCAPTCHA_SITE_KEY: '${WG_HCAPTCHA_SITE_KEY}'
+    WG_HCAPTCHA_SECRET_KEY: '${WG_HCAPTCHA_SECRET_KEY}'
+    WG_DISCORD_WEBHOOK_APPLEWIKI: '${WG_DISCORD_WEBHOOK_APPLEWIKI:-}'
+    WG_DISCORD_WEBHOOK_HACKDIFFERENT: '${WG_DISCORD_WEBHOOK_HACKDIFFERENT:-}'
+    WG_CLOUDFLARE_ZONE: '${WG_CLOUDFLARE_ZONE:-}'
+    WG_CLOUDFLARE_TOKEN: '${WG_CLOUDFLARE_TOKEN:-}'
+
 services:
   mediawiki:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: always
+    <<: *mw-base
     ports:
       - '127.0.0.1:9000:9000'
-    links:
-      - database
-      - redis
-    volumes:
-      - './mediawiki:/var/www/html:ro'
-      - './init.php:/var/www/init.php:ro'
-      - './LocalSettings.php:/var/www/html/LocalSettings.php:ro'
-      - './html/composer.local.json:/var/www/html/composer.local.json:ro'
-      - './html/composer.lock:/var/www/html/composer.lock'
-      - './html/skins/Citizen:/var/www/html/skins/Citizen:ro'
-      - './html/extensions:/var/www/html/extensions:ro'
-      - './html/images:/var/www/html/images'
-      - './html/vendor:/var/www/html/vendor'
-      - './html/sitemap:/var/www/html/sitemap'
-      - './cache:/var/www/html/cache'
-      - './php.ini:/usr/local/etc/php/conf.d/zz-wiki.ini:ro'
-      - './php-fpm.conf:/usr/local/etc/php-fpm.d/zz-wiki.conf:ro'
-    environment:
-      SENTRY_DSN: '${SENTRY_DSN:-}'
-      WG_DB_PASSWORD: '${MYSQL_PASSWORD}'
-      WG_SECRET_KEY: '${WG_SECRET_KEY}'
-      WG_AUTHENTICATION_TOKEN_VERSION: '${WG_AUTHENTICATION_TOKEN_VERSION}'
-      WG_SENDGRID_API_KEY: '${WG_SENDGRID_API_KEY}'
-      WG_HCAPTCHA_SITE_KEY: '${WG_HCAPTCHA_SITE_KEY}'
-      WG_HCAPTCHA_SECRET_KEY: '${WG_HCAPTCHA_SECRET_KEY}'
-      WG_DISCORD_WEBHOOK_APPLEWIKI: '${WG_DISCORD_WEBHOOK_APPLEWIKI:-}'
-      WG_DISCORD_WEBHOOK_HACKDIFFERENT: '${WG_DISCORD_WEBHOOK_HACKDIFFERENT:-}'
-      WG_CLOUDFLARE_ZONE: '${WG_CLOUDFLARE_ZONE:-}'
-      WG_CLOUDFLARE_TOKEN: '${WG_CLOUDFLARE_TOKEN:-}'
+
+  jobrunner:
+    <<: *mw-base
+    command: '/jobrunner-run.sh'
+    depends_on:
+      - mediawiki
+
+  # jobrunner:
+  #   <<: *mw-base
+  #   command: 'php /jobrunner/redisJobRunnerService --config-file=/jobrunner.json'
+  #   depends_on:
+  #     - mediawiki
+
+  # jobchron:
+  #   <<: *mw-base
+  #   command: 'php /jobrunner/redisJobChronService --config-file=/jobrunner.json'
+  #   depends_on:
+  #     - mediawiki
 
   database:
     image: mariadb
