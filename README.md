@@ -1,4 +1,8 @@
-# The Apple Wiki’s MediaWiki config files
+<h2 align="center">
+<img src="https://github.githubassets.com/images/icons/emoji/unicode/1f33b.png">
+<br>
+The Apple Wiki’s MediaWiki config files
+</h2>
 
 This repository holds the configuration used by [The Apple Wiki](https://theapplewiki.com/), a community wiki built on MediaWiki.
 
@@ -11,14 +15,14 @@ If you have any questions, catch us [on Discord](https://theapplewiki.com/discor
 On the host, we use:
 
 * nginx
-* PHP 8.1
+* PHP 8.2
 * [jobrunner](https://github.com/wikimedia/mediawiki-services-jobrunner)
 * certbot
 * s3cmd for backups
 
 In containers, we use:
 
-* MediaWiki 1.41
+* MediaWiki 1.43
 * php-fpm
 * MariaDB
 * Redis
@@ -30,6 +34,7 @@ Services we use:
 * S3
 * hCaptcha
 * SendGrid
+* Sentry
 
 Currently, we run on a single server. This seems to manage our traffic perfectly fine.
 
@@ -50,6 +55,30 @@ We also use [MediaWikiAuth](https://www.mediawiki.org/wiki/Extension:MediaWikiAu
 We have all extensions and skins cloned into html/extensions/ and html/skins/ via git. This allows them to be updated easily with `./update-exts.sh`.
 
 If the MediaWiki image needs to be built, or rebuilt, use `./update-mw.sh`.
+
+## Patches
+
+We currently manually patch the following:
+
+### TemplateStylesExtender
+
+This should probably be considered for upstreaming. This fixes (or at least silences) a type error that I haven't fully understood the cause of yet.
+
+```patch
+diff --git a/includes/Matcher/VarNameMatcher.php b/includes/Matcher/VarNameMatcher.php
+index eebd370..fb24bf1 100644
+--- a/includes/Matcher/VarNameMatcher.php
++++ b/includes/Matcher/VarNameMatcher.php
+@@ -35,7 +35,7 @@ class VarNameMatcher extends Matcher {
+ 		$len = count( $values );
+
+ 		for ( $i = $start; $i < $len; $i++ ) {
+-			if ( preg_match( '/^\s*--[\w-]+\s*$/', $values[$i]->value() ) === 1 ) {
++			if ( preg_match( '/^\s*--[\w-]+\s*$/', (string)$values[$i]->value() ) === 1 ) {
+ 				yield $this->makeMatch( $values, $start, $this->next( $values, $start, $options ) );
+ 			}
+ 		}
+```
 
 ## To do
 
