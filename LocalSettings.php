@@ -275,7 +275,10 @@ if ($wikiID != 'applewiki') {
 	$wgNamespaceProtection[NS_TEMPLATE] = ['editinterface', 'edittemplate'];
 }
 
-$wgNamespaceProtection[NS_MODULE] = ['edittemplate'];
+$wgNamespaceProtection[NS_MODULE] = ['editinterface', 'edittemplate'];
+
+$wgRestrictionLevels += ['bot', 'edittemplate', 'editinterface'];
+$wgCascadingRestrictionLevels += ['bot', 'edittemplate', 'editinterface'];
 
 // Extensions
 wfLoadExtension('Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json");
@@ -458,7 +461,6 @@ $wgGroupPermissions['autoconfirmed'] = [
 ];
 
 // Trusted
-$wgRestrictionLevels[] = 'trusted';
 $wgGroupPermissions['trusted'] = $wgGroupPermissions['autoconfirmed'] + [
 	'apihighlimits'    => true,
 	'autopatrol'       => true,
@@ -477,11 +479,9 @@ $wgGroupPermissions['trusted'] = $wgGroupPermissions['autoconfirmed'] + [
 ];
 
 // Bots
-$wgRestrictionLevels[] = 'bot';
 $wgGroupPermissions['bot'] += $wgGroupPermissions['trusted'];
 
 // Interface admin
-$wgRestrictionLevels[] = 'interface-admin';
 $wgGroupPermissions['interface-admin'] = [
 	'editusercss'    => true,
 	'edituserjson'   => true,
@@ -494,7 +494,7 @@ $wgGroupPermissions['interface-admin'] = [
 ];
 
 // Moderator
-$wgRestrictionLevels[] = 'moderator';
+$wgPrivilegedGroups[] = 'moderator';
 $wgGroupPermissions['moderator'] = $wgGroupPermissions['trusted'] + [
 	'abusefilter-hidden-log'   => true,
 	'abusefilter-hide-log'     => true,
