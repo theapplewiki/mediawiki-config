@@ -94,6 +94,10 @@
 [submodule "html/extensions/MultiPurge"]
 	path = html/extensions/MultiPurge
 	url = https://github.com/octfx/mediawiki-extensions-MultiPurge.git
+[submodule "html/extensions/Nuke"]
+	path = html/extensions/Nuke
+	url = https://github.com/wikimedia/mediawiki-extensions-Nuke.git
+	branch = REL1_43
 [submodule "html/extensions/OATHAuth"]
 	path = html/extensions/OATHAuth
 	url = https://github.com/wikimedia/mediawiki-extensions-OATHAuth.git
