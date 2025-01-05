@@ -67,20 +67,9 @@ case 'applewiki':
 case 'testwiki':
 	$hostname = 'applewiki.test';
 	$wgServer = 'http://applewiki.test';
-	$wgSitename = 'The Apple Wiki';
+	$wgSitename = 'Test Wiki';
 	$wgMetaNamespace = 'The_Apple_Wiki';
 	$wgCitizenThemeColor = '#585858';
-	$wgAppleTouchIcon = "$wgResourceBasePath/apple-touch-icon.png";
-	$wgLogos = [
-		'1x' => $wgAppleTouchIcon,
-		'svg' => "$wgResourceBasePath/resources/applewiki/logo-square.svg",
-		'wordmark' => [
-			'src' => "$wgResourceBasePath/resources/applewiki/logo-wordmark.svg",
-			'width' => 135,
-			'height' => 23
-		],
-		'icon' => "$wgResourceBasePath/resources/applewiki/logo-glyph.svg",
-	];
 	break;
 
 case 'kirbwiki':
