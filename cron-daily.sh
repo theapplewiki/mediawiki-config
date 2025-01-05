@@ -7,11 +7,7 @@ source .env
 for i in $WIKIS; do
 	# Update sitemap
 	nice docker compose exec mediawiki \
-		maintenance/run --wiki $i generateSitemap --quiet --fspath=/var/www/html/sitemap --compress=no --urlpath=/sitemap
-
-	for j in html/sitemap/*.xml; do
-		nice -n 19 ionice -c 3 gzip -9 < "$j" > "$j".gz
-	done
+		maintenance/run --wiki $i generateSitemap --quiet --fspath=/var/www/html/sitemap --urlpath=/sitemap
 
 	# Process Echo notifications
 	nice docker compose exec mediawiki \
