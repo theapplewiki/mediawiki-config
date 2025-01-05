@@ -70,7 +70,7 @@
 		},
 
 		"memory": {
-			"*": "100M",
+			"*": "300M",
 			"cirrusSearchElasticaWrite": "500M"
 		}
 	},
