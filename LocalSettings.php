@@ -373,7 +373,7 @@ $wgParserEnableLegacyHeadingDOM = PHP_SAPI != 'cli' && !IS_LEGACY;
 // Reverse proxy
 $wgUseCdn            = true;
 $wgUsePrivateIPs     = true;
-$wgCdnServersNoPurge = ['0.0.0.0/0'];
+$wgCdnServersNoPurge = ['172.0.0.0/8'];
 $wgCdnMaxAge         = 24 * 60 * 60; // 1 day
 $wgForcedRawSMaxage  = 15 * 60; // 15 mins
 $wgCdnMatchParameterOrder = true;
