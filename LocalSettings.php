@@ -304,7 +304,6 @@ wfLoadExtensions([
 	'ParserMigration',
 	'Popups',
 	'RelatedArticles',
-	'Renameuser',
 	'ReplaceText',
 	'RevisionSlider',
 	'Scribunto',
