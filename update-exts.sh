@@ -33,5 +33,5 @@ for i in $WIKIS; do
 		maintenance/run --wiki $i update --quick
 done
 
-docker compose restart mediawiki
+docker compose restart mediawiki jobrunner
 rm -rf cache/*
