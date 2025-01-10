@@ -103,7 +103,7 @@ $wgFileCacheDirectory = "$IP/cache";
 // UPO means: this is also a user preference option
 $wgEnableEmail         = $wikiID != 'testwiki';
 $wgEnableUserEmail     = true; # UPO
-$wgAllowHTMLEmail      = true;
+// $wgAllowHTMLEmail      = true; // Broken - https://phabricator.wikimedia.org/T383343
 
 $wgEmergencyContact    = "wiki@$hostname";
 $wgPasswordSender      = "wiki@$hostname";
