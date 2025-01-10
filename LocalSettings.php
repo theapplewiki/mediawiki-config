@@ -286,6 +286,7 @@ wfLoadExtensions([
 	'Cite',
 	'CodeEditor',
 	'CodeMirror',
+	'CommonsMetadata',
 	'ConfirmEdit',
 	'ConfirmEdit/hCaptcha',
 	'Details',
@@ -815,3 +816,6 @@ if (isset($_ENV['WG_FLICKR_API_KEY'])) {
 	$wgCopyUploadsDomains = ['*.flickr.com', '*.staticflickr.com'];
 	$wgUploadWizardConfig['flickrApiKey'] = $_ENV['WG_FLICKR_API_KEY'];
 }
+
+// CommonsMetadata
+$wgCommonsMetadataSetTrackingCategories = true;

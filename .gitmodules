@@ -40,6 +40,10 @@
 	path = html/extensions/CodeMirror
 	url = https://github.com/wikimedia/mediawiki-extensions-CodeMirror.git
 	branch = REL1_43
+[submodule "html/extensions/CommonsMetadata"]
+	path = html/extensions/CommonsMetadata
+	url = https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata.git
+	branch = REL1_43
 [submodule "html/extensions/ConfirmEdit"]
 	path = html/extensions/ConfirmEdit
 	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit.git
