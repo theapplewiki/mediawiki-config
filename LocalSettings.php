@@ -289,6 +289,7 @@ wfLoadExtensions([
 	'DiscussionTools',
 	'Echo',
 	'Elastica',
+	'EventLogging',
 	'Gadgets',
 	'InputBox',
 	'Interwiki',
@@ -317,6 +318,7 @@ wfLoadExtensions([
 	'TemplateWizard',
 	'TextExtracts',
 	'Thanks',
+	'UploadWizard',
 	'VisualEditor',
 	'WikiEditor',
 	'WikiSEO',
@@ -444,9 +446,10 @@ $wgAutoConfirmCount = 20;
 $wgGroupPermissions['autoconfirmed'] = [
 	'autoconfirmed' => true,
 	'editsemiprotected' => true,
+	'reupload'      => true,
 	'sendemail'     => true,
 	'skipcaptcha'   => true,
-	'reupload'      => true
+	'upload_by_url' => true
 ];
 
 // Trusted
@@ -773,7 +776,7 @@ $wgMultiPurgeCloudFlareApiToken = $_ENV['WG_CLOUDFLARE_TOKEN'];
 $wgMultiPurgeRunInQueue = true;
 $wgMultiPurgeStaticPurges = [
 	'Startup Script' => 'load.php?lang=en&modules=startup&only=scripts&raw=1&skin=citizen',
-	'Site Styles' => 'load.php?lang=en&modules=site.styles&only=styles&skin=citizen'
+	'Site Styles'    => 'load.php?lang=en&modules=site.styles&only=styles&skin=citizen'
 ];
 
 // Hack to fix MultiPurge not using absolute urls for images
@@ -786,3 +789,23 @@ $wgHooks['MultiPurgeOnPurgeUrls'][] = function(&$urls) {
 		}
 	}
 };
+
+// UploadWizard
+$wgAllowCopyUploads = true;
+$wgUploadNavigationUrl = str_replace('$1', 'Special:UploadWizard', $wgArticlePath);
+$wgUploadWizardConfig = [
+	'uwLanguages' => [
+		'en' => 'English'
+	],
+	'tutorial' => [
+		'skip' => true
+	],
+	'feedbackLink' => false,
+	'alternativeUploadToolsPage' => false,
+	'maxUploads' => 10
+];
+
+if (isset($_ENV['WG_FLICKR_API_KEY'])) {
+	$wgCopyUploadsDomains = ['*.flickr.com', '*.staticflickr.com'];
+	$wgUploadWizardConfig['flickrApiKey'] = $_ENV['WG_FLICKR_API_KEY'];
+}

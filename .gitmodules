@@ -67,6 +67,10 @@
 	path = html/extensions/Elastica
 	url = https://github.com/wikimedia/mediawiki-extensions-Elastica.git
 	branch = REL1_43
+[submodule "html/extensions/EventLogging"]
+	path = html/extensions/EventLogging
+	url = https://github.com/wikimedia/mediawiki-extensions-EventLogging.git
+	branch = REL1_43
 [submodule "html/extensions/Gadgets"]
 	path = html/extensions/Gadgets
 	url = https://github.com/wikimedia/mediawiki-extensions-Gadgets.git
@@ -184,6 +188,10 @@
 [submodule "html/extensions/Thanks"]
 	path = html/extensions/Thanks
 	url = https://github.com/wikimedia/mediawiki-extensions-Thanks.git
+	branch = REL1_43
+[submodule "html/extensions/UploadWizard"]
+	path = html/extensions/UploadWizard
+	url = https://github.com/wikimedia/mediawiki-extensions-UploadWizard.git
 	branch = REL1_43
 [submodule "html/extensions/VisualEditor"]
 	path = html/extensions/VisualEditor
