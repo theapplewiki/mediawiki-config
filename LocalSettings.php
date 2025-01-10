@@ -136,19 +136,29 @@ $wgLanguageConverterCacheType = 'redis';
 
 $wgObjectCaches['redis'] = [
 	'class'       => 'RedisBagOStuff',
-	'servers'     => ['redis:6379']
+	'servers'     => ['redis:6379'],
+	'persistent'  => true,
 ];
 
 $wgJobTypeConf['default'] = [
 	'class'       => 'JobQueueRedis',
 	'redisServer' => 'redis:6379',
 	'redisConfig' => [],
+	'order'       => 'fifo',
+	'checkDelay'  => true,
 	'claimTTL'    => 60 * 60, // 1 hour
 	'daemonized'  => true
 ];
 
+$wgJobQueueAggregator = [
+	'class'       => 'JobQueueAggregatorRedis',
+	'redisServer' => 'localhost',
+	'redisConfig' => [],
+];
+
 $wgObjectCacheSessionExpiry = 24 * 60 * 60; // 1 day
 $wgParserCacheExpireTime = 60 * 60; // 1 hour
+$wgRevisionCacheExpiry   = 60 * 60; // 1 hour
 $wgTranscludeCacheExpiry = 24 * 60 * 60; // 1 day
 $wgEnableSidebarCache    = true;
 $wgUseLocalMessageCache  = true;
