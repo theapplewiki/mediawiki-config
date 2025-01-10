@@ -205,7 +205,7 @@ $wgSecretKey = $_ENV['WG_SECRET_KEY'];
 $wgAuthenticationTokenVersion = $_ENV['WG_AUTHENTICATION_TOKEN_VERSION'];
 
 // License
-$wgRightsPage = ''; # Set to the title of a wiki page that describes your license/copyright
+$wgRightsPage = "$wgMetaNamespace:Copyrights";
 $wgRightsUrl  = 'https://creativecommons.org/licenses/by-sa/4.0/';
 $wgRightsText = 'Creative Commons Attribution-ShareAlike';
 
@@ -243,41 +243,36 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	define('NS_FILESYSTEM',      2308);
 	define('NS_FILESYSTEM_TALK', 2309);
 
-	$wgExtraNamespaces[NS_KEYS]            = 'Keys';
-	$wgExtraNamespaces[NS_KEYS_TALK]       = 'Keys_talk';
-	$wgExtraNamespaces[NS_DEV]             = 'Dev';
-	$wgExtraNamespaces[NS_DEV_TALK]        = 'Dev_talk';
-	$wgExtraNamespaces[NS_FILESYSTEM]      = 'Filesystem';
-	$wgExtraNamespaces[NS_FILESYSTEM_TALK] = 'Filesystem_talk';
+	$wgExtraNamespaces += [
+		NS_KEYS            => 'Keys',
+		NS_KEYS_TALK       => 'Keys_talk',
+		NS_DEV             => 'Dev',
+		NS_DEV_TALK        => 'Dev_talk',
+		NS_FILESYSTEM      => 'Filesystem',
+		NS_FILESYSTEM_TALK => 'Filesystem_talk'
+	];
 
-	$wgNamespaceAliases['FS'] = NS_FILESYSTEM;
+	$wgContentNamespaces += [NS_KEYS, NS_DEV, NS_FILESYSTEM];
+	$wgSitemapNamespaces += [NS_KEYS, NS_DEV, NS_FILESYSTEM];
 
-	$wgContentNamespaces[] = NS_KEYS;
-	$wgContentNamespaces[] = NS_DEV;
-	$wgContentNamespaces[] = NS_FILESYSTEM;
+	$wgNamespacesToBeSearchedDefault += [
+		NS_DEV        => true,
+		NS_FILESYSTEM => true
+	];
 
-	$wgNamespacesToBeSearchedDefault[NS_DEV]        = true;
-	$wgNamespacesToBeSearchedDefault[NS_FILESYSTEM] = true;
-
-	$wgNamespacesWithSubpages[NS_DEV]        = true;
-	$wgNamespacesWithSubpages[NS_FILESYSTEM] = true;
-
-	$wgSitemapNamespaces[] = NS_KEYS;
-	$wgSitemapNamespaces[] = NS_DEV;
-	$wgSitemapNamespaces[] = NS_FILESYSTEM;
+	$wgNamespacesWithSubpages += [
+		NS_DEV        => true,
+		NS_FILESYSTEM => true
+	];
 }
 
 $wgPageImagesNamespaces = $wgContentNamespaces;
 
-// TODO: Enable for applewiki when we’re in a better position to do this
-if ($wikiID != 'applewiki') {
-	$wgNamespaceProtection[NS_TEMPLATE] = ['editinterface', 'edittemplate'];
-}
+$wgAvailableRights += ['edittemplate'];
+$wgRestrictionLevels = ['autoconfirmed', 'bot', 'edittemplate', 'editinterface', 'sysop'];
+$wgCascadingRestrictionLevels = ['autoconfirmed', 'bot', 'edittemplate', 'editinterface', 'sysop'];
 
 $wgNamespaceProtection[NS_MODULE] = ['editinterface', 'edittemplate'];
-
-$wgRestrictionLevels += ['bot', 'edittemplate', 'editinterface'];
-$wgCascadingRestrictionLevels += ['bot', 'edittemplate', 'editinterface'];
 
 // Extensions
 wfLoadExtension('Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json");
@@ -399,6 +394,7 @@ $wgCSPHeader = [
 	'disown-opener'   => true,
 	'report-uri'      => false
 ];
+$wgApiFrameOptions   = 'SAMEORIGIN';
 
 // Captcha
 $wgHCaptchaSiteKey      = $_ENV['WG_HCAPTCHA_SITE_KEY'];
