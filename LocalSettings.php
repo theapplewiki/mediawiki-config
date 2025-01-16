@@ -108,7 +108,7 @@ $wgUploadPath         = "/images/$wikiID";
 
 $wgCacheDirectory     = "/tmp/mediawiki_cache/$wikiID";
 $wgUploadDirectory    = "$IP/images/$wikiID";
-$wgUseFileCache       = true;
+$wgUseFileCache       = !DEBUG;
 $wgFileCacheDirectory = "$IP/cache";
 
 // Email
@@ -256,8 +256,6 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	define('NS_FILESYSTEM_TALK', 2309);
 
 	$wgExtraNamespaces += [
-		NS_KEYS            => 'Keys',
-		NS_KEYS_TALK       => 'Keys_talk',
 		NS_DEV             => 'Dev',
 		NS_DEV_TALK        => 'Dev_talk',
 		NS_FILESYSTEM      => 'Filesystem',
@@ -349,8 +347,8 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 		'SemanticScribunto'
 	]);
 
-	if (file_exists("$IP/extensions/WantedKeys")) {
-		wfLoadExtension('WantedKeys');
+	if (file_exists("$IP/extensions/KeyPages")) {
+		wfLoadExtension('KeyPages');
 	}
 }
 
@@ -736,18 +734,6 @@ $wgVisualEditorUseSingleEditTab  = true;
 $wgWatchlistExpiry = true;
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
-	// Exclude key pages from Special:Random, except if specifically requested (Special:Random/Keys)
-	$wgHooks['RandomPageQuery'][] = function(&$tables, &$conds, &$joinConds) {
-		if ($conds['page_namespace'] != [NS_KEYS]) {
-			$conds[] = 'page_namespace != ' . NS_KEYS;
-		}
-	};
-
-	// Exclude key pages from Special:WantedPages
-	$wgHooks['WantedPages::getQueryInfo'][] = function(&$wantedPages, &$query) {
-		$query['conds'][] = 'lt_namespace != ' . NS_KEYS;
-	};
-
 	// Footer links
 	$wgHooks['SkinAddFooterLinks'][] = function($skin, $key, &$footerLinks) {
 		if ($key == 'places') {

@@ -51,10 +51,10 @@ Extensions installed, beyond ones in the base MediaWiki install:
 * Housekeeping
   * [Disambiguator](https://www.mediawiki.org/wiki/Extension:Disambiguator)*
   * [DiscordRCFeed](https://www.mediawiki.org/wiki/Extension:DiscordRCFeed)
+  * [KeyPages](https://github.com/theapplewiki/mediawiki-extensions-KeyPages)
   * [MultiPurge](https://www.mediawiki.org/wiki/Extension:MultiPurge)
   * [ParserMigration](https://www.mediawiki.org/wiki/Extension:ParserMigration)*
   * [SendGrid](https://www.mediawiki.org/wiki/Extension:SendGrid)
-  * [WantedKeys](https://github.com/theapplewiki/mediawiki-extensions-WantedKeys)
   * [WikiSEO](https://www.mediawiki.org/wiki/Extension:WikiSEO)
 * Page rendering
   * [Details](https://www.mediawiki.org/wiki/Extension:Details)
