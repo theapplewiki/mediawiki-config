@@ -25,6 +25,7 @@ x-mw-base: &mw-base
     - './jobrunner-run.sh:/jobrunner-run.sh:ro'
     - './jobrunner:/jobrunner:ro'
   environment:
+    DEBUG: '${DEBUG:-}'
     SENTRY_DSN: '${SENTRY_DSN:-}'
     WG_DB_PASSWORD: '${MYSQL_PASSWORD}'
     WG_SECRET_KEY: '${WG_SECRET_KEY}'
@@ -43,12 +44,18 @@ services:
     <<: *mw-base
     ports:
       - '127.0.0.1:9000:9000'
+    depends_on:
+      - database
+      - redis
+      # elasticsearch intentionally skipped, not required for basic operation
 
   jobrunner:
     <<: *mw-base
     command: '/jobrunner-run.sh'
     depends_on:
       - mediawiki
+      - database
+      - redis
 
   database:
     image: mariadb

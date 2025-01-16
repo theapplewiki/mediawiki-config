@@ -3,16 +3,28 @@ if (!defined('MEDIAWIKI')) {
 	exit;
 }
 
+define('DEBUG', @$_ENV['DEBUG'] == '1');
 
 // Never display errors to the user. We can find them in php-fpm logs still.
 // TODO: Change back when warning in CLI is fixed
-// error_reporting(PHP_SAPI == 'cli' ? E_ALL : 0);
-error_reporting(PHP_SAPI == 'cli' ? E_ALL & ~E_WARNING : 0);
-// error_reporting(E_ALL);
-
+// error_reporting(DEBUG || PHP_SAPI == 'cli' ? E_ALL : 0);
+error_reporting(DEBUG || PHP_SAPI == 'cli' ? E_ALL & ~E_WARNING : 0);
 
 $wgShowExceptionDetails = true;
-// $wgDebugLogFile = '/tmp/mediawiki.log';
+
+if (DEBUG) {
+	// DO NOT set DEBUG in production!
+	$wgDebugLogFile = '/tmp/mediawiki.log';
+	$wgDBerrorLog = '/tmp/mediawiki.log';
+	$wgDebugComments = true;
+	$wgDebugDumpSql = true;
+	$wgDebugToolbar = true;
+	$wgDevelopmentWarnings = true;
+
+	// Force clear opcaches on every request
+	apcu_clear_cache();
+	opcache_reset();
+}
 
 
 // Uncomment when running maintenance (e.g. MediaWiki updates)
@@ -102,7 +114,7 @@ $wgFileCacheDirectory = "$IP/cache";
 // Email
 // UPO means: this is also a user preference option
 $wgEnableEmail         = $wikiID != 'testwiki';
-$wgEnableUserEmail     = true; # UPO
+$wgEnableUserEmail     = $wikiID != 'testwiki'; # UPO
 // $wgAllowHTMLEmail      = true; // Broken - https://phabricator.wikimedia.org/T383343
 
 $wgEmergencyContact    = "wiki@$hostname";
@@ -160,8 +172,8 @@ $wgObjectCacheSessionExpiry = 24 * 60 * 60; // 1 day
 $wgParserCacheExpireTime = 60 * 60; // 1 hour
 $wgRevisionCacheExpiry   = 60 * 60; // 1 hour
 $wgTranscludeCacheExpiry = 24 * 60 * 60; // 1 day
-$wgEnableSidebarCache    = true;
-$wgUseLocalMessageCache  = true;
+$wgEnableSidebarCache    = !DEBUG;
+$wgUseLocalMessageCache  = !DEBUG;
 $wgMiserMode             = true;
 $wgQueryCacheLimit       = 10000;
 
@@ -378,7 +390,7 @@ $wgCdnMatchParameterOrder = true;
 $wgEnableCanonicalServerLink = true;
 
 // Cookies
-$wgSecureLogin       = true;
+$wgSecureLogin       = $wikiID == 'kirbwiki';
 $wgCookieSecure      = $wikiID != 'testwiki';
 $wgCookieSameSite    = 'Lax';
 
