@@ -1,0 +1,90 @@
+{
+	"uwLanguages": {
+		"en": "English"
+	},
+
+	"tutorial": {
+		"skip": true
+	},
+
+	"feedbackLink": false,
+	"alternativeUploadToolsPage": false,
+	"maxUploads": 10,
+
+	"licenses": {
+		"screenshot": {
+			"msg": "mwe-upwiz-license-screenshot-text",
+			"msgExplain": "mwe-upwiz-license-screenshot-explain"
+		},
+
+		"marketing": {
+			"msg": "mwe-upwiz-license-marketing-text",
+			"msgExplain": "mwe-upwiz-license-marketing-explain"
+		},
+
+		"trademark": {
+			"msg": "mwe-upwiz-license-trademark-text",
+			"msgExplain": "mwe-upwiz-license-trademark-explain"
+		}
+	},
+
+	"licensing": {
+		"ownWork": {
+			"type": "or",
+			"template": "self",
+			"licenses": [
+				"cc-zero",
+				"cc-by-4.0",
+				"cc-by-sa-4.0"
+			]
+		},
+
+		"thirdParty": {
+			"type": "or",
+			"licenseGroups": [
+				{
+					"head": "mwe-upwiz-license-yes-head",
+					"subhead": "mwe-upwiz-license-yes-subhead",
+					"licenses": [
+						"cc-zero",
+						"cc-by-4.0",
+						"cc-by-3.0",
+						"cc-by-sa-4.0",
+						"cc-by-sa-3.0"
+					]
+				},
+
+				// TODO: Find a way to pass these interface messages to the frontend
+				// {
+				// 	"head": "mwe-upwiz-license-copyright-head",
+				// 	"subhead": "mwe-upwiz-license-copyright-subhead",
+				// 	"licenses": [
+				// 		"screenshot",
+				// 		"marketing",
+				// 		"trademark"
+				// 	]
+				// },
+
+				{
+					"head": "mwe-upwiz-license-no-head",
+					"subhead": "mwe-upwiz-license-no-subhead",
+					"url": [
+						"//commons.wikimedia.org/wiki/Commons:Licensing#Acceptable_licenses",
+						"//commons.wikimedia.org/wiki/Commons:Licensing#Material_in_the_public_domain",
+						"//commons.wikimedia.org/wiki/Commons:Licensing",
+						"//commons.wikimedia.org/wiki/Commons:Village_pump/Copyright"
+					],
+					"defaults": ["none"],
+					"licenses": ["none"]
+				},
+
+				{
+					"head": "mwe-upwiz-license-other-head",
+					"special": "custom",
+					"defaults": ["custom"],
+					"licenses": ["custom"]
+				}
+			]
+		}
+	}
+}

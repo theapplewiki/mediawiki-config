@@ -788,7 +788,7 @@ $wgCirrusSearchWikimediaExtraPlugin['regex'] = [
 ];
 
 // MultiPurge
-$wgMultiPurgeEnabledServices = ['Cloudflare'];
+$wgMultiPurgeEnabledServices = $wikiID == 'testwiki' ? [] : ['Cloudflare'];
 $wgMultiPurgeServiceOrder = ['Cloudflare'];
 $wgMultiPurgeCloudFlareZoneId = $_ENV['WG_CLOUDFLARE_ZONE'];
 $wgMultiPurgeCloudFlareApiToken = $_ENV['WG_CLOUDFLARE_TOKEN'];
@@ -812,17 +812,8 @@ $wgHooks['MultiPurgeOnPurgeUrls'][] = function(&$urls) {
 // UploadWizard
 $wgAllowCopyUploads = true;
 $wgUploadNavigationUrl = str_replace('$1', 'Special:UploadWizard', $wgArticlePath);
-$wgUploadWizardConfig = [
-	'uwLanguages' => [
-		'en' => 'English'
-	],
-	'tutorial' => [
-		'skip' => true
-	],
-	'feedbackLink' => false,
-	'alternativeUploadToolsPage' => false,
-	'maxUploads' => 10
-];
+$wgUploadWizardConfig = json5_decode(file_get_contents('/uploadwizard.json'), true);
+$wgUploadWizardConfig['debug'] = DEBUG;
 
 if (isset($_ENV['WG_FLICKR_API_KEY'])) {
 	$wgCopyUploadsDomains = ['*.flickr.com', '*.staticflickr.com'];
