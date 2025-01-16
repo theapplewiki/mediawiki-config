@@ -1,7 +1,7 @@
 # Hi there! We're glad for bots to index the wiki, but please be respectful of the rules below.
 # The wiki is pretty big, and indexing *every* URL will cause an unnecessary amount of traffic.
 
-# Rules copied from Wikipedia 2023-03-18:
+# == Rules copied from https://en.wikipedia.org/w/index.php?title=MediaWiki:Robots.txt&oldid=1259536303 ==
 
 # Observed spamming large amounts of https://en.wikipedia.org/?curid=NNNNNN
 # and ignoring 429 ratelimit responses, claims to respect robots:
@@ -119,10 +119,9 @@ Disallow: /
 User-agent: WebReaper
 Disallow: /
 
-# End Wikipedia rules
-
-# AI and other abusive bots, last updated 2024-08-03
+# == AI and other abusive bots, last updated 2025-01-12 ==
 # https://theapplewiki.com/wiki/The_Apple_Wiki:Community_portal#Bot_traffic_abuse
+
 User-agent: Amazonbot
 Disallow: /
 
@@ -135,10 +134,10 @@ Disallow: /
 User-agent: AwarioSmartBot
 Disallow: /
 
-User-agent: Bytespider
+User-agent: Barkrowler
 Disallow: /
 
-User-agent: CCBot
+User-agent: Bytespider
 Disallow: /
 
 User-agent: ClaudeBot
@@ -151,6 +150,9 @@ User-agent: DataForSeoBot
 Disallow: /
 
 User-agent: Diffbot
+Disallow: /
+
+User-agent: Down
 Disallow: /
 
 User-agent: FacebookBot
@@ -194,6 +196,8 @@ Disallow: /
 
 User-agent: TurnitinBot
 Disallow: /
+
+# == General rules ==
 
 User-agent: *
 Allow: /wiki/
