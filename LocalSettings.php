@@ -620,17 +620,20 @@ $wgPopupsReferencePreviewsBetaFeature = false;
 if ($wikiID == 'applewiki') {
 	$wgRCFeeds['discord-applewiki'] = [
 		'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
-		'omit_bots' => true
+		'omit_bots' => true,
+		'style' => 'embed'
 	];
 	$wgRCFeeds['discord-hackdifferent'] = [
 		'url' => $_ENV['WG_DISCORD_WEBHOOK_HACKDIFFERENT'],
 		'omit_bots' => true,
-		'omit_log_types' => ['block', 'newusers', 'patrol']
+		'omit_log_types' => ['block', 'newusers', 'patrol'],
+		'style' => 'embed'
 	];
 } else if ($wikiID == 'testwiki') {
 	$wgRCFeeds['discord-testwiki'] = [
 		'url' => $_ENV['WG_DISCORD_WEBHOOK_APPLEWIKI'],
-		'omit_bots' => false
+		'omit_bots' => false,
+		'style' => 'embed'
 	];
 }
 
