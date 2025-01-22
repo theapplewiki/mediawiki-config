@@ -29,8 +29,6 @@ docker compose exec mediawiki \
 for i in $WIKIS; do
 	docker compose exec mediawiki \
 		maintenance/run --wiki $i update --quick
-	docker compose exec mediawiki \
-		maintenance/run --wiki $i update --quick
 done
 
 docker compose restart mediawiki jobrunner
