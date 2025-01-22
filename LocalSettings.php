@@ -709,6 +709,7 @@ $wgRelatedArticlesUseCirrusSearchApiUrl = "$wgScriptPath/api.php";
 $wgRelatedArticlesDescriptionSource   = 'textextracts';
 $wgRelatedArticlesUseCirrusSearch     = true;
 $wgRelatedArticlesOnlyUseCirrusSearch = true;
+$wgRelatedArticlesCardLimit           = 3;
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	$wgRelatedArticlesFooterAllowedNamespaces[] = NS_DEV;
