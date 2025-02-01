@@ -565,7 +565,7 @@ $wgGroupPermissions['sysop'] += $wgGroupPermissions['moderator'] + $wgGroupPermi
 $wgRevokePermissions['sysop']['createaccount'] = false;
 
 // Delete unneeded groups
-$merge_to_sysop = ['bureaucrat', 'checkuser', 'suppress', 'smwadministrator', 'smwcurator', 'smweditor', 'push-subscription-manager'];
+$merge_to_sysop = ['bureaucrat', 'checkuser', 'checkuser-temporary-account-viewer', 'suppress', 'smwadministrator', 'smwcurator', 'smweditor', 'push-subscription-manager', 'upwizcampeditors'];
 foreach ($merge_to_sysop as $group) {
 	if (isset($wgGroupPermissions[$group])) {
 		$wgGroupPermissions['sysop'] = $wgGroupPermissions[$group] + $wgGroupPermissions['sysop'];
