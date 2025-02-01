@@ -1,7 +1,7 @@
 {
 	"groups": {
 		"main": {
-			"runners": 2,
+			"runners": 4,
 			"include": [
 				"*"
 			],
@@ -22,7 +22,7 @@
 		},
 
 		"secondary": {
-			"runners": 2,
+			"runners": 4,
 			"include": [
 				"ParsoidCacheUpdateJobOnDependencyChange",
 				"ParsoidCacheUpdateJobOnEdit",
@@ -70,8 +70,7 @@
 		},
 
 		"memory": {
-			"*": "300M",
-			"cirrusSearchElasticaWrite": "500M"
+			"*": "500M"
 		}
 	},
 

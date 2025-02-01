@@ -78,7 +78,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2g
+          memory: 2.6g
 
   elasticsearch:
     build:
@@ -89,8 +89,8 @@ services:
       - './elasticsearch/data:/usr/share/elasticsearch/data'
     environment:
       discovery.type: 'single-node'
-      ES_JAVA_OPTS: '-Xms1g -Xmx1g'
+      ES_JAVA_OPTS: '-Xms4g -Xmx4g'
     deploy:
       resources:
         limits:
-          memory: 2g
+          memory: 4.1g
