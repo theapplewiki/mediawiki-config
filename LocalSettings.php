@@ -446,6 +446,7 @@ if ($wikiID == 'applewiki') {
 $wgGroupPermissions['user'] += $star_perms;
 $wgGroupPermissions['user']['edit']   = false;
 $wgGroupPermissions['user']['upload'] = false;
+$wgGroupPermissions['user']['editcontentmodel'] = false;
 
 // Don't let users create users
 $wgRevokePermissions['user']['createaccount'] = true;
@@ -462,6 +463,7 @@ $wgAutoConfirmAge   = 4 * 24 * 60 * 60; // 4 days
 $wgAutoConfirmCount = 20;
 $wgGroupPermissions['autoconfirmed'] = [
 	'autoconfirmed' => true,
+	'editcontentmodel'  => true,
 	'editsemiprotected' => true,
 	'reupload'      => true,
 	'sendemail'     => true,
