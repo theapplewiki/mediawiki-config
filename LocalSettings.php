@@ -727,6 +727,10 @@ $wgExtractsExtendOpenSearchXml = true;
 // PageImages
 $wgPageImagesExpandOpenSearchXml = true;
 
+// CodeMirror
+$wgCodeMirrorV6 = true;
+$wgDefaultUserOptions['usecodemirror'] = true;
+
 // WikiEditor
 $wgWikiEditorRealtimePreview = true;
 
