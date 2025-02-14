@@ -245,7 +245,14 @@ $wgNamespacesToBeSearchedDefault = [
 
 $wgNamespacesWithSubpages[NS_MAIN] = true;
 
-$wgSitemapNamespaces = [NS_MAIN, NS_USER, NS_PROJECT, NS_HELP, NS_CATEGORY];
+$wgSitemapNamespaces = [
+	NS_MAIN, NS_TALK,
+	NS_USER, NS_USER_TALK,
+	NS_PROJECT, NS_PROJECT_TALK,
+	NS_FILE, NS_FILE_TALK,
+	NS_HELP, NS_HELP_TALK,
+	NS_CATEGORY, NS_CATEGORY_TALK
+];
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	define('NS_KEYS',            2304);
@@ -262,8 +269,8 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 		NS_FILESYSTEM_TALK => 'Filesystem_talk'
 	];
 
-	$wgContentNamespaces += [NS_KEYS, NS_DEV, NS_FILESYSTEM];
-	$wgSitemapNamespaces += [NS_KEYS, NS_DEV, NS_FILESYSTEM];
+	$wgContentNamespaces = array_merge($wgContentNamespaces, [NS_DEV, NS_FILESYSTEM]);
+	$wgSitemapNamespaces = array_merge($wgSitemapNamespaces, [NS_KEYS, NS_KEYS_TALK, NS_DEV, NS_DEV_TALK, NS_FILESYSTEM, NS_FILESYSTEM_TALK]);
 
 	$wgNamespacesToBeSearchedDefault += [
 		NS_DEV        => true,
@@ -278,7 +285,7 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 
 $wgPageImagesNamespaces = $wgContentNamespaces;
 
-$wgAvailableRights += ['edittemplate'];
+$wgAvailableRights[] = ['edittemplate'];
 $wgRestrictionLevels = ['autoconfirmed', 'bot', 'edittemplate', 'editinterface', 'sysop'];
 $wgCascadingRestrictionLevels = ['autoconfirmed', 'bot', 'edittemplate', 'editinterface', 'sysop'];
 
