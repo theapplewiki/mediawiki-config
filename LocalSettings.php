@@ -441,7 +441,9 @@ $star_perms = $wgGroupPermissions['*'];
 // Everyone
 $wgGroupPermissions['*'] = [
 	'createaccount' => false,
-	'read' => true
+	'read' => true,
+	// Needed for password reset option on UserLogin
+	'editmyprivateinfo' => true
 ];
 
 if ($wikiID == 'applewiki') {
