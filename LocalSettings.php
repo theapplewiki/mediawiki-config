@@ -436,15 +436,10 @@ $wgEnableScaryTranscluding = true;
 
 // Permissions
 
-$star_perms = $wgGroupPermissions['*'];
-
 // Everyone
-$wgGroupPermissions['*'] = [
-	'createaccount' => false,
-	'read' => true,
-	// Needed for password reset option on UserLogin
-	'editmyprivateinfo' => true
-];
+$wgGroupPermissions['*']['edit']   = false;
+$wgGroupPermissions['*']['upload'] = false;
+$wgGroupPermissions['*']['createaccount'] = false;
 
 if ($wikiID == 'applewiki') {
 	// Set to false in an emergency
@@ -452,7 +447,6 @@ if ($wikiID == 'applewiki') {
 }
 
 // Logged in user
-$wgGroupPermissions['user'] += $star_perms;
 $wgGroupPermissions['user']['edit']   = false;
 $wgGroupPermissions['user']['upload'] = false;
 $wgGroupPermissions['user']['editcontentmodel'] = false;
