@@ -58,6 +58,7 @@ services:
       - mediawiki
       - database
       - redis
+      - elasticsearch
 
   database:
     image: mariadb
@@ -89,8 +90,8 @@ services:
       - './elasticsearch/data:/usr/share/elasticsearch/data'
     environment:
       discovery.type: 'single-node'
-      ES_JAVA_OPTS: '-Xms4g -Xmx4g'
+      ES_JAVA_OPTS: '-Xms3500m -Xmx3500m'
     deploy:
       resources:
         limits:
-          memory: 4.1g
+          memory: 3.6g
