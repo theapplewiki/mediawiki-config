@@ -700,6 +700,7 @@ $wgCitizenShowPageTools = 'permission';
 $wgCitizenSearchGateway = 'mwRestApi';
 $wgCitizenSearchDescriptionSource = 'textextracts';
 $wgCitizenMaxSearchResults = 10;
+$wgCitizenEnableCommandPalette = true;
 
 // Vector
 $wgVectorResponsive = true;
