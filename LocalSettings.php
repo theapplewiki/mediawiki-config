@@ -448,6 +448,7 @@ if ($wikiID == 'applewiki') {
 
 // Logged in user
 $wgGroupPermissions['user']['edit']   = false;
+$wgGroupPermissions['user']['move']   = false;
 $wgGroupPermissions['user']['upload'] = false;
 $wgGroupPermissions['user']['editcontentmodel'] = false;
 
