@@ -28,7 +28,7 @@ docker compose exec mediawiki \
 
 for i in $WIKIS; do
 	docker compose exec mediawiki \
-		maintenance/run --wiki $i update --quick
+		maintenance/run --wiki $i update --quick --skip-config-validation
 done
 
 docker compose restart mediawiki jobrunner
