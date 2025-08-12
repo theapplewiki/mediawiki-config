@@ -16,12 +16,16 @@
 			"msg": "mwe-upwiz-license-screenshot-text"
 		},
 
-		"product image": {
-			"msg": "mwe-upwiz-license-product-text"
-		},
-
 		"extracted image": {
 			"msg": "mwe-upwiz-license-extracted-text"
+		},
+
+		"logo image": {
+			"msg": "mwe-upwiz-license-logo-text"
+		},
+
+		"product image": {
+			"msg": "mwe-upwiz-license-product-text"
 		}
 	},
 
@@ -56,8 +60,9 @@
 					"subhead": "mwe-upwiz-license-copyright-subhead",
 					"licenses": [
 						"screenshot",
-						"product image",
-						"extracted image"
+						"extracted image",
+						"logo image",
+						"product image"
 					]
 				},
 
