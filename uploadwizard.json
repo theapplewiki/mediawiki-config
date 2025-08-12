@@ -13,18 +13,15 @@
 
 	"licenses": {
 		"screenshot": {
-			"msg": "mwe-upwiz-license-screenshot-text",
-			"msgExplain": "mwe-upwiz-license-screenshot-explain"
+			"msg": "mwe-upwiz-license-screenshot-text"
 		},
 
-		"marketing": {
-			"msg": "mwe-upwiz-license-marketing-text",
-			"msgExplain": "mwe-upwiz-license-marketing-explain"
+		"product image": {
+			"msg": "mwe-upwiz-license-product-text"
 		},
 
-		"trademark": {
-			"msg": "mwe-upwiz-license-trademark-text",
-			"msgExplain": "mwe-upwiz-license-trademark-explain"
+		"extracted image": {
+			"msg": "mwe-upwiz-license-extracted-text"
 		}
 	},
 
@@ -54,26 +51,19 @@
 					]
 				},
 
-				// TODO: Find a way to pass these interface messages to the frontend
-				// {
-				// 	"head": "mwe-upwiz-license-copyright-head",
-				// 	"subhead": "mwe-upwiz-license-copyright-subhead",
-				// 	"licenses": [
-				// 		"screenshot",
-				// 		"marketing",
-				// 		"trademark"
-				// 	]
-				// },
+				{
+					"head": "mwe-upwiz-license-copyright-head",
+					"subhead": "mwe-upwiz-license-copyright-subhead",
+					"licenses": [
+						"screenshot",
+						"product image",
+						"extracted image"
+					]
+				},
 
 				{
 					"head": "mwe-upwiz-license-no-head",
 					"subhead": "mwe-upwiz-license-no-subhead",
-					"url": [
-						"//commons.wikimedia.org/wiki/Commons:Licensing#Acceptable_licenses",
-						"//commons.wikimedia.org/wiki/Commons:Licensing#Material_in_the_public_domain",
-						"//commons.wikimedia.org/wiki/Commons:Licensing",
-						"//commons.wikimedia.org/wiki/Commons:Village_pump/Copyright"
-					],
 					"defaults": ["none"],
 					"licenses": ["none"]
 				},
