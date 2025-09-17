@@ -687,7 +687,7 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 $wgFooterIcons['poweredby']['mediawiki']['src'] = "$wgResourceBasePath/resources/common/poweredby-mediawiki.svg";
 
 // Disable SMW icon
-$wgFooterIcons['poweredby']['semanticmediawiki'] = [];
+$wgFooterIcons['poweredbysmw']['semanticmediawiki'] = [];
 
 // WikiSEO
 $wgWikiSeoEnableAutoDescription = true;
