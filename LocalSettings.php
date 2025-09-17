@@ -3,6 +3,8 @@ if (!defined('MEDIAWIKI')) {
 	exit;
 }
 
+use MediaWiki\Html\Html;
+
 define('DEBUG', @$_ENV['DEBUG'] == '1');
 
 // Never display errors to the user. We can find them in php-fpm logs still.
@@ -290,9 +292,6 @@ $wgRestrictionLevels = ['autoconfirmed', 'bot', 'edittemplate', 'editinterface',
 $wgCascadingRestrictionLevels = ['autoconfirmed', 'bot', 'edittemplate', 'editinterface', 'sysop'];
 
 $wgNamespaceProtection[NS_MODULE] = ['editinterface', 'edittemplate'];
-
-// Temp hack for 1.43 extension compatibility
-class_alias('MediaWiki\Html\Html', 'Html');
 
 // Extensions
 wfLoadExtension('Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json");
