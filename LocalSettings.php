@@ -291,6 +291,9 @@ $wgCascadingRestrictionLevels = ['autoconfirmed', 'bot', 'edittemplate', 'editin
 
 $wgNamespaceProtection[NS_MODULE] = ['editinterface', 'edittemplate'];
 
+// Temp hack for 1.43 extension compatibility
+class_alias('MediaWiki\Html\Html', 'Html');
+
 // Extensions
 wfLoadExtension('Parsoid', "$IP/vendor/wikimedia/parsoid/extension.json");
 wfLoadExtensions([
