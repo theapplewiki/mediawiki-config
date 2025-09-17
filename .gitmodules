@@ -83,10 +83,6 @@
 	path = html/extensions/InputBox
 	url = https://github.com/wikimedia/mediawiki-extensions-InputBox.git
 	branch = REL1_44
-[submodule "html/extensions/Interwiki"]
-	path = html/extensions/Interwiki
-	url = https://github.com/wikimedia/mediawiki-extensions-Interwiki.git
-	branch = REL1_44
 [submodule "html/extensions/KeyPages"]
 	path = html/extensions/KeyPages
 	url = https://github.com/theapplewiki/mediawiki-extensions-KeyPages.git

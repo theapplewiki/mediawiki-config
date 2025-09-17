@@ -318,7 +318,6 @@ wfLoadExtensions([
 	'EventLogging',
 	'Gadgets',
 	'InputBox',
-	'Interwiki',
 	'Linter',
 	'LoginNotify',
 	'MultimediaViewer',
