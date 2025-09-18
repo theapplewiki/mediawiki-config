@@ -1,7 +1,7 @@
 {
 	"groups": {
 		"main": {
-			"runners": 3,
+			"runners": 6,
 			"include": [
 				"*"
 			],
@@ -22,7 +22,7 @@
 		},
 
 		"secondary": {
-			"runners": 3,
+			"runners": 6,
 			"include": [
 				"ParsoidCacheUpdateJobOnDependencyChange",
 				"ParsoidCacheUpdateJobOnEdit",
