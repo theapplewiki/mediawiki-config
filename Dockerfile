@@ -1,7 +1,7 @@
-# https://github.com/wikimedia/mediawiki-docker/blob/main/1.42/fpm/Dockerfile
-FROM php:8.2-fpm
+# https://github.com/wikimedia/mediawiki-docker/blob/main/1.44/fpm/Dockerfile
+FROM php:8.3-fpm
 
-# == Start copied from mediawiki:1.42-fpm ==
+# == Start copied from mediawiki:1.44-fpm ==
 # System dependencies
 RUN set -eux; \
 	\
@@ -35,7 +35,7 @@ RUN set -eux; \
 		opcache \
 	; \
 	\
-	pecl install APCu-5.1.24; \
+	pecl install APCu-5.1.27; \
 	pecl install LuaSandbox-4.1.2; \
 	docker-php-ext-enable \
 		apcu \
@@ -45,17 +45,7 @@ RUN set -eux; \
 	\
 	# reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 	apt-mark auto '.*' > /dev/null; \
-	apt-mark manual $savedAptMark; \
-	ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
-		| awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }' \
-		| sort -u \
-		| xargs -r dpkg-query --search \
-		| cut -d: -f1 \
-		| sort -u \
-		| xargs -rt apt-mark manual;
-	# \
-	# apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-	# rm -rf /var/lib/apt/lists/*
+	apt-mark manual $savedAptMark
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
