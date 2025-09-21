@@ -349,6 +349,9 @@ wfLoadExtensions([
 ]);
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
+	// Workaround for SemanticScribunto using deprecated global class
+	class_alias('MediaWiki\Linker\Linker', 'Linker');
+
 	wfLoadExtensions([
 		'SemanticMediaWiki',
 		'SemanticResultFormats',
