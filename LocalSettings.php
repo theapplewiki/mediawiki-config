@@ -455,6 +455,7 @@ $wgGroupPermissions['user']['edit']   = false;
 $wgGroupPermissions['user']['move']   = false;
 $wgGroupPermissions['user']['upload'] = false;
 $wgGroupPermissions['user']['editcontentmodel'] = false;
+$wgGroupPermissions['user']['sendemail'] = false;
 
 // Don't let users create users
 $wgRevokePermissions['user']['createaccount'] = true;
