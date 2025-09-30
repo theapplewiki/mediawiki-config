@@ -678,6 +678,7 @@ $smwgQueryResultCacheLifetime = 6 * 60 * 60; // 6 hours
 $smwgEnabledQueryDependencyLinksStore = true;
 $smwgQFilterDuplicates    = true;
 $smwgChangePropagationProtection = false;
+$smwgSetParserCacheTimestamp = false; // Fixes T393667
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 	$smwgNamespacesWithSemanticLinks[NS_KEYS]       = true;
