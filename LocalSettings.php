@@ -427,7 +427,7 @@ $wgHCaptchaSendRemoteIP = true;
 
 // DNS denylist
 $wgEnableDnsBlacklist = $wikiID != 'testwiki';
-$wgDnsBlacklistUrls   = ['xbl.spamhaus.org.', 'rbl.dnsbl.im.', 'noptr.spamrats.com.', 'all.s5h.net.', 'z.mailspike.net.'];
+$wgDnsBlacklistUrls   = ['rbl.dnsbl.im.', 'noptr.spamrats.com.', 'all.s5h.net.', 'z.mailspike.net.'];
 $wgSuspiciousIpExpiry = 60 * 60; // 1 hour
 
 // User CSS/JS
