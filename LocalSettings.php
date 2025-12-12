@@ -384,8 +384,10 @@ $wgParsoidSettings = [
 	'linting'   => true
 ];
 
-$wgParserEnableLegacyMediaDOM = PHP_SAPI != 'cli' && !IS_LEGACY;
-$wgParserEnableLegacyHeadingDOM = PHP_SAPI != 'cli' && !IS_LEGACY;
+$wgParserEnableLegacyMediaDOM   = PHP_SAPI != 'cli' && IS_LEGACY;
+$wgParserEnableLegacyHeadingDOM = PHP_SAPI != 'cli' && IS_LEGACY;
+$wgUseContentMediaStyles = true;
+$wgUseLegacyMediaStyles  = true;
 
 // Reverse proxy
 $wgUseCdn            = true;
