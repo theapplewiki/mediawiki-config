@@ -12,6 +12,8 @@ define('DEBUG', @$_ENV['DEBUG'] == '1');
 // error_reporting(DEBUG || PHP_SAPI == 'cli' ? E_ALL : 0);
 error_reporting(DEBUG || PHP_SAPI == 'cli' ? E_ALL & ~E_WARNING : 0);
 
+$wgMemoryLimit = "256M";
+
 $wgShowExceptionDetails = true;
 
 if (DEBUG) {
