@@ -834,9 +834,12 @@ if (isset($_ENV['WG_FLICKR_API_KEY'])) {
 // Workaround to get custom messages in the wizard
 $wgResourceModules['ext.uploadWizard.customMessages'] = [
 	'messages' => [
+		'mwe-upwiz-license-yes-head',
+		'mwe-upwiz-license-no-head',
 		'mwe-upwiz-license-screenshot-text',
-		'mwe-upwiz-license-product-text',
 		'mwe-upwiz-license-extracted-text',
+		'mwe-upwiz-license-logo-text',
+		'mwe-upwiz-license-product-text',
 		'mwe-upwiz-license-copyright-head',
 		'mwe-upwiz-license-copyright-subhead'
 	]
