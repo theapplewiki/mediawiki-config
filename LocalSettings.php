@@ -690,10 +690,9 @@ if ($wikiID != 'kirbwiki') {
 
 // Citizen
 $wgCitizenShowPageTools = 'permission';
-$wgCitizenSearchGateway = 'mwRestApi';
-$wgCitizenSearchDescriptionSource = 'textextracts';
 $wgCitizenMaxSearchResults = 10;
 $wgCitizenEnableCommandPalette = true;
+$wgCitizenUseNewToken = true;
 
 // Vector
 $wgVectorResponsive = true;
@@ -720,6 +719,7 @@ if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
 
 // TextExtracts
 $wgExtractsExtendOpenSearchXml = true;
+$wgExtractsExtendRestSearch    = true;
 
 // PageImages
 $wgPageImagesExpandOpenSearchXml = true;
