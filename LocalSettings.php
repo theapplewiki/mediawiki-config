@@ -403,6 +403,11 @@ $wgCSPHeader = [
 ];
 $wgApiFrameOptions   = 'SAMEORIGIN';
 
+// Auth
+// "$wgMWOAuthSharedUserIDs=false is deprecated, set $wgMWOAuthSharedUserIDs=true, $wgMWOAuthSharedUserSource='local' instead"
+$wgMWOAuthSharedUserIDs    = true;
+$wgMWOAuthSharedUserSource = 'local';
+
 // Captcha
 $wgHCaptchaSiteKey      = $_ENV['WG_HCAPTCHA_SITE_KEY'];
 $wgHCaptchaSecretKey    = $_ENV['WG_HCAPTCHA_SECRET_KEY'];
