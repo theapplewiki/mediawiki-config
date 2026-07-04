@@ -333,6 +333,7 @@ wfLoadExtensions([
 	'TemplateWizard',
 	'TextExtracts',
 	'Thanks',
+	'Thumbro',
 	'UploadWizard',
 	'VisualEditor',
 	'WikiEditor',

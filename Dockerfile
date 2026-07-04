@@ -1,15 +1,13 @@
-# https://github.com/wikimedia/mediawiki-docker/blob/main/1.42/fpm/Dockerfile
+# https://github.com/wikimedia/mediawiki-docker/blob/main/1.46/fpm/Dockerfile
 FROM php:8.5-fpm
 
-# == Start copied from mediawiki:1.42-fpm ==
+# == Start adapted from mediawiki:1.46-fpm ==
 # System dependencies
 RUN set -eux; \
 	\
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		git \
-		librsvg2-bin \
-		imagemagick \
 		# Required for SyntaxHighlighting
 		python3 \
 	; \
@@ -51,10 +49,10 @@ RUN set -eux; \
 		| xargs -r dpkg-query --search \
 		| cut -d: -f1 \
 		| sort -u \
-		| xargs -rt apt-mark manual;
-	# \
-	# apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-	# rm -rf /var/lib/apt/lists/*
+		| xargs -rt apt-mark manual; \
+	\
+	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+	rm -rf /var/lib/apt/lists/*
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
@@ -70,24 +68,25 @@ RUN set -eux; \
 	mkdir -p /var/www/data; \
 	chown -R www-data:www-data /var/www/data
 
-# == End copied from mediawiki:1.42-fpm ==
+# == End adapted from mediawiki:1.46-fpm ==
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 RUN set -eux; \
 		apt-get update -q; \
 		apt-get install -qy --no-install-recommends \
+			libvips-tools \
+			libzstd-dev \
 			unzip \
-			libmagickwand-dev \
-			libzstd-dev; \
+			webp; \
 		apt-get autoremove -qy; \
 		apt-get clean; \
 		rm -rf /var/lib/apt/lists/*
 
 RUN set -eux; \
-		pecl install excimer imagick redis; \
+		pecl install excimer redis; \
 		docker-php-ext-install -j $(nproc) exif pcntl; \
-		docker-php-ext-enable imagick pcntl redis; \
+		docker-php-ext-enable pcntl redis; \
 		rm -rf /tmp/pear
 
 CMD ["php-fpm"]

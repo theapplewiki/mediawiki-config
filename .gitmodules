@@ -192,6 +192,9 @@
 	path = html/extensions/Thanks
 	url = https://github.com/wikimedia/mediawiki-extensions-Thanks.git
 	branch = REL1_46
+[submodule "html/extensions/Thumbro"]
+	path = html/extensions/Thumbro
+	url = https://github.com/StarCitizenTools/mediawiki-extensions-Thumbro.git
 [submodule "html/extensions/UploadWizard"]
 	path = html/extensions/UploadWizard
 	url = https://github.com/wikimedia/mediawiki-extensions-UploadWizard.git
