@@ -55,11 +55,6 @@ if (defined('MW_DB')) {
 }
 
 
-// Legacy browsers: Mostly defined as those that don’t support CSS Grid.
-// Accessed over HTTP, or Cloudflare rewrite rule passes ?__legacy_browser=1
-define('IS_LEGACY', @$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'http' || @$_GET['__legacy_browser'] == '1');
-
-
 switch ($wikiID) {
 case 'applewiki':
 	$hostname = 'theapplewiki.com';
@@ -191,7 +186,7 @@ $wgFileExtensions[] = 'svg';
 $wgSVGConverter     = 'rsvg';
 
 // Prefer sending SVG to client rather than rendered PNG
-$wgSVGNativeRendering = !IS_LEGACY;
+$wgSVGNativeRendering = true;
 
 // InstantCommons allows wiki to use images from https://commons.wikimedia.org
 $wgUseInstantCommons = true;
@@ -224,12 +219,7 @@ $wgAuthenticationTokenVersion = $_ENV['WG_AUTHENTICATION_TOKEN_VERSION'];
 $wgRightsPage = "$wgMetaNamespace:Copyrights";
 $wgRightsUrl  = 'https://creativecommons.org/licenses/by-sa/4.0/';
 $wgRightsText = 'Creative Commons Attribution-ShareAlike';
-
-if (IS_LEGACY) {
-	$wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
-} else {
-	$wgRightsIcon = "$wgResourceBasePath/resources/common/cc-by-sa.svg";
-}
+$wgRightsIcon = "$wgResourceBasePath/resources/common/cc-by-sa.svg";
 
 // Diff tool
 $wgDiff3 = '/usr/bin/diff3';
@@ -370,12 +360,7 @@ wfLoadSkins([
 	'Vector',
 ]);
 
-$legacySkin = file_exists("$IP/skins/MonoBookLegacy") ? 'MonoBookLegacy' : 'Vector';
-if ($legacySkin == 'MonoBookLegacy') {
-	wfLoadSkin('MonoBookLegacy');
-}
-
-$wgDefaultSkin = IS_LEGACY ? $legacySkin : 'citizen';
+$wgDefaultSkin = 'citizen';
 
 // Parsoid
 $wgParsoidSettings = [
@@ -383,8 +368,6 @@ $wgParsoidSettings = [
 	'linting'   => true
 ];
 
-$wgParserEnableLegacyMediaDOM   = PHP_SAPI != 'cli' && IS_LEGACY;
-$wgParserEnableLegacyHeadingDOM = PHP_SAPI != 'cli' && IS_LEGACY;
 $wgUseContentMediaStyles = true;
 $wgUseLegacyMediaStyles  = true;
 
