@@ -322,7 +322,6 @@ wfLoadExtensions([
 	'Linter',
 	'LoginNotify',
 	'MultimediaViewer',
-	'MultiPurge',
 	'Nuke',
 	'OATHAuth',
 	'OAuth',
@@ -351,18 +350,16 @@ wfLoadExtensions([
 ]);
 
 if ($wikiID == 'applewiki' || $wikiID == 'testwiki') {
-	// Workaround for SemanticScribunto using deprecated global class
-	class_alias('MediaWiki\Linker\Linker', 'Linker');
-
 	wfLoadExtensions([
+		'KeyPages',
 		'SemanticMediaWiki',
 		'SemanticResultFormats',
 		'SemanticScribunto'
 	]);
+}
 
-	if (file_exists("$IP/extensions/KeyPages")) {
-		wfLoadExtension('KeyPages');
-	}
+if ($wikiID != 'testwiki') {
+	wfLoadExtension('MultiPurge');
 }
 
 // Skins
@@ -672,10 +669,6 @@ $wgReplaceTextResultsLimit = 1000;
 $wgScribuntoDefaultEngine = 'luasandbox';
 
 // Semantic MediaWiki
-if (function_exists('enableSemantics')) {
-	enableSemantics($hostname);
-}
-
 $smwgPDefaultType         = '_txt';
 $smwgQueryResultCacheType = 'redis';
 $smwgQueryResultCacheLifetime = 6 * 60 * 60; // 6 hours

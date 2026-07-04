@@ -1,5 +1,5 @@
 # https://github.com/wikimedia/mediawiki-docker/blob/main/1.42/fpm/Dockerfile
-FROM php:8.2-fpm
+FROM php:8.5-fpm
 
 # == Start copied from mediawiki:1.42-fpm ==
 # System dependencies
@@ -32,11 +32,10 @@ RUN set -eux; \
 		intl \
 		mbstring \
 		mysqli \
-		opcache \
 	; \
 	\
-	pecl install APCu-5.1.24; \
-	pecl install LuaSandbox-4.1.2; \
+	pecl install APCu-5.1.28; \
+	pecl install LuaSandbox-4.1.3; \
 	docker-php-ext-enable \
 		apcu \
 		luasandbox \
