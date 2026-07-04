@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+skip=(SemanticMediaWiki SemanticResultFormats SemanticScribunto)
+
 source .env
 cd "$(dirname "$0")"
 git submodule init
@@ -9,6 +11,11 @@ for i in html/{extensions,skins}/*; do
 	echo -n "$i -> "
 	if [[ ! -e $i/.git ]]; then
 		echo "Not a git repo?"
+		continue
+	fi
+
+	if [[ " ${skip[@]} " =~ " $(basename $i) " ]]; then
+		echo "Skipped"
 		continue
 	fi
 
