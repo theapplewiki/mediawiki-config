@@ -178,12 +178,9 @@ $wgQueryCacheLimit       = 10000;
 
 // Uploads
 $wgEnableUploads    = true;
-$wgUseImageMagick   = true;
-$wgImageMagickConvertCommand = '/usr/bin/convert';
 
 // Enable SVG
 $wgFileExtensions[] = 'svg';
-$wgSVGConverter     = 'rsvg';
 
 // Prefer sending SVG to client rather than rendered PNG
 $wgSVGNativeRendering = true;
