@@ -79,7 +79,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2.6g
+          memory: 4.1g
 
   elasticsearch:
     build:
