@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-skip=(SemanticMediaWiki SemanticResultFormats SemanticScribunto)
+skip=(Citizen SemanticMediaWiki SemanticResultFormats SemanticScribunto)
 
 source .env
 cd "$(dirname "$0")"
