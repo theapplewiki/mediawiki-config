@@ -76,6 +76,7 @@ services:
     volumes:
       - './redis.conf:/usr/local/etc/redis/redis.conf:ro'
       - './redis/data:/data'
+    command: redis-server /usr/local/etc/redis/redis.conf
     deploy:
       resources:
         limits:
