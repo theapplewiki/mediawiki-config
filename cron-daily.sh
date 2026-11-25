@@ -1,17 +1,21 @@
 #!/bin/bash
 cd /srv/wiki
-set -e
+# set -e
 
 source .env
 
 for i in $WIKIS; do
-	# Update sitemap
-	nice docker compose exec mediawiki \
-		maintenance/run --wiki $i generateSitemap --quiet --fspath=/var/www/html/sitemap --urlpath=/sitemap
-
 	# Process Echo notifications
 	nice docker compose exec mediawiki \
 		maintenance/run --wiki $i Echo:processEchoEmailBatch --quiet
+
+	# Update CirrusSearch completion index
+	nice docker compose exec mediawiki \
+		maintenance/run --wiki $i CirrusSearch:UpdateSuggesterIndex --quiet
+
+	# Update sitemap
+	nice docker compose exec mediawiki \
+		maintenance/run --wiki $i generateSitemap --quiet --fspath=/var/www/html/sitemap --urlpath=/sitemap
 done
 
 # Make backup
